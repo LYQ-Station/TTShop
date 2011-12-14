@@ -1,0 +1,533 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B02B024E1487BBF000B5F048 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B024D1487BBF000B5F048 /* UIKit.framework */; };
+		B02B02501487BBF000B5F048 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B024F1487BBF000B5F048 /* Foundation.framework */; };
+		B02B02521487BBF000B5F048 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B02511487BBF000B5F048 /* CoreGraphics.framework */; };
+		B02B02581487BBF000B5F048 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B02B02561487BBF000B5F048 /* InfoPlist.strings */; };
+		B02B025A1487BBF000B5F048 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B02B02591487BBF000B5F048 /* main.m */; };
+		B02B025E1487BBF000B5F048 /* TSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B02B025D1487BBF000B5F048 /* TSAppDelegate.m */; };
+		B02B02631487BBF000B5F048 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = B02B02621487BBF000B5F048 /* first.png */; };
+		B02B02651487BBF000B5F048 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B02B02641487BBF000B5F048 /* first@2x.png */; };
+		B02B026A1487BBF000B5F048 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = B02B02691487BBF000B5F048 /* second.png */; };
+		B02B026C1487BBF000B5F048 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B02B026B1487BBF000B5F048 /* second@2x.png */; };
+		B02B02791487BC6200B5F048 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B02781487BC6200B5F048 /* QuartzCore.framework */; };
+		B0616A561494FBDC00FF111B /* TSTradeRecords.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0616A551494FBDC00FF111B /* TSTradeRecords.xib */; };
+		B0616A5D1495038D00FF111B /* TSVertifyPhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0616A5C1495038D00FF111B /* TSVertifyPhoneController.m */; };
+		B06BB0F71490FC0C007B388F /* TSTradeRemindCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B06BB0F61490FC0C007B388F /* TSTradeRemindCell.m */; };
+		B0818BB91497949400118CCE /* TSHistoryPhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0818BB81497949400118CCE /* TSHistoryPhoneController.m */; };
+		B0A36461148D0E37000D02B3 /* icon140.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A36460148D0E37000D02B3 /* icon140.png */; };
+		B0C1AE7014924F150092A094 /* TSTradeRecordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C1AE6F14924F150092A094 /* TSTradeRecordsController.m */; };
+		B0C4F6CB1496308E009AD7C5 /* TSMobileChargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C4F6CA1496308E009AD7C5 /* TSMobileChargeController.m */; };
+		B0D07E74148BA40D0096CDFC /* TSAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D07E73148BA40D0096CDFC /* TSAboutController.m */; };
+		B0D07E79148BAE2C0096CDFC /* TSAbout.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0D07E78148BAE2C0096CDFC /* TSAbout.xib */; };
+		B0D54836148E6540000C9587 /* TSTradeRemindModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D54835148E6540000C9587 /* TSTradeRemindModel.m */; };
+		B0F408C514890CD800B62B43 /* STEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F408C414890CD800B62B43 /* STEventDispatcher.m */; };
+		B0F408CA14890CEB00B62B43 /* STURLLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F408C714890CEB00B62B43 /* STURLLoader.m */; };
+		B0F408CB14890CEB00B62B43 /* STURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F408C914890CEB00B62B43 /* STURLRequest.m */; };
+		B0F408D4148917D100B62B43 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0F408D3148917D100B62B43 /* MainWindow.xib */; };
+		B0F408E41489264D00B62B43 /* TSMoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F408E31489264D00B62B43 /* TSMoreController.m */; };
+		B0F408E8148928DA00B62B43 /* more_cell_update.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F408E6148928DA00B62B43 /* more_cell_update.png */; };
+		B0F408E9148928DA00B62B43 /* more_cell_update@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F408E7148928DA00B62B43 /* more_cell_update@2x.png */; };
+		B0F408F31489322A00B62B43 /* TSSysNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F408F21489322A00B62B43 /* TSSysNoticeController.m */; };
+		B0F408F61489336C00B62B43 /* TSTradeRemindController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F408F51489336C00B62B43 /* TSTradeRemindController.m */; };
+		B0F408F9148937DA00B62B43 /* TSAppsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F408F8148937DA00B62B43 /* TSAppsListViewController.m */; };
+		B0F408FC14893B5900B62B43 /* TSAppsGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F408FB14893B5900B62B43 /* TSAppsGridViewController.m */; };
+		B0F408FF14893FBE00B62B43 /* TSSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F408FE14893FBE00B62B43 /* TSSettingController.m */; };
+		B0F71E7A148A07A8009B667B /* TSFeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F71E79148A07A8009B667B /* TSFeedbackController.m */; };
+		B0F71E81148A6CD7009B667B /* TSHelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F71E80148A6CD7009B667B /* TSHelpController.m */; };
+		B0F71E83148A6EA2009B667B /* TSHelp.html in Resources */ = {isa = PBXBuildFile; fileRef = B0F71E82148A6EA2009B667B /* TSHelp.html */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B02B02491487BBF000B5F048 /* TTShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B02B024D1487BBF000B5F048 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B02B024F1487BBF000B5F048 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B02B02511487BBF000B5F048 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B02B02551487BBF000B5F048 /* TTShop-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TTShop-Info.plist"; sourceTree = "<group>"; };
+		B02B02571487BBF000B5F048 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B02B02591487BBF000B5F048 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B02B025B1487BBF000B5F048 /* TTShop-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TTShop-Prefix.pch"; sourceTree = "<group>"; };
+		B02B025C1487BBF000B5F048 /* TSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSAppDelegate.h; sourceTree = "<group>"; };
+		B02B025D1487BBF000B5F048 /* TSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSAppDelegate.m; sourceTree = "<group>"; };
+		B02B02621487BBF000B5F048 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		B02B02641487BBF000B5F048 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		B02B02691487BBF000B5F048 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		B02B026B1487BBF000B5F048 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		B02B02781487BC6200B5F048 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B0616A551494FBDC00FF111B /* TSTradeRecords.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSTradeRecords.xib; sourceTree = "<group>"; };
+		B0616A5B1495038D00FF111B /* TSVertifyPhoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSVertifyPhoneController.h; sourceTree = "<group>"; };
+		B0616A5C1495038D00FF111B /* TSVertifyPhoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSVertifyPhoneController.m; sourceTree = "<group>"; };
+		B06BB0F51490FC0C007B388F /* TSTradeRemindCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTradeRemindCell.h; sourceTree = "<group>"; };
+		B06BB0F61490FC0C007B388F /* TSTradeRemindCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTradeRemindCell.m; sourceTree = "<group>"; };
+		B0818BB71497949400118CCE /* TSHistoryPhoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSHistoryPhoneController.h; sourceTree = "<group>"; };
+		B0818BB81497949400118CCE /* TSHistoryPhoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSHistoryPhoneController.m; sourceTree = "<group>"; };
+		B0A36460148D0E37000D02B3 /* icon140.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon140.png; sourceTree = "<group>"; };
+		B0C1AE6E14924F150092A094 /* TSTradeRecordsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTradeRecordsController.h; sourceTree = "<group>"; };
+		B0C1AE6F14924F150092A094 /* TSTradeRecordsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTradeRecordsController.m; sourceTree = "<group>"; };
+		B0C4F6C91496308E009AD7C5 /* TSMobileChargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMobileChargeController.h; sourceTree = "<group>"; };
+		B0C4F6CA1496308E009AD7C5 /* TSMobileChargeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMobileChargeController.m; sourceTree = "<group>"; };
+		B0D07E72148BA40D0096CDFC /* TSAboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAboutController.h; sourceTree = "<group>"; };
+		B0D07E73148BA40D0096CDFC /* TSAboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAboutController.m; sourceTree = "<group>"; };
+		B0D07E78148BAE2C0096CDFC /* TSAbout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSAbout.xib; sourceTree = "<group>"; };
+		B0D54834148E6540000C9587 /* TSTradeRemindModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTradeRemindModel.h; sourceTree = "<group>"; };
+		B0D54835148E6540000C9587 /* TSTradeRemindModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTradeRemindModel.m; sourceTree = "<group>"; };
+		B0F408C314890CD800B62B43 /* STEventDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STEventDispatcher.h; sourceTree = "<group>"; };
+		B0F408C414890CD800B62B43 /* STEventDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STEventDispatcher.m; sourceTree = "<group>"; };
+		B0F408C614890CEB00B62B43 /* STURLLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STURLLoader.h; sourceTree = "<group>"; };
+		B0F408C714890CEB00B62B43 /* STURLLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STURLLoader.m; sourceTree = "<group>"; };
+		B0F408C814890CEB00B62B43 /* STURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STURLRequest.h; sourceTree = "<group>"; };
+		B0F408C914890CEB00B62B43 /* STURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STURLRequest.m; sourceTree = "<group>"; };
+		B0F408D3148917D100B62B43 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		B0F408E21489264D00B62B43 /* TSMoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMoreController.h; sourceTree = "<group>"; };
+		B0F408E31489264D00B62B43 /* TSMoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMoreController.m; sourceTree = "<group>"; };
+		B0F408E6148928DA00B62B43 /* more_cell_update.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_cell_update.png; sourceTree = "<group>"; };
+		B0F408E7148928DA00B62B43 /* more_cell_update@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_cell_update@2x.png"; sourceTree = "<group>"; };
+		B0F408F11489322A00B62B43 /* TSSysNoticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSSysNoticeController.h; sourceTree = "<group>"; };
+		B0F408F21489322A00B62B43 /* TSSysNoticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSSysNoticeController.m; sourceTree = "<group>"; };
+		B0F408F41489336C00B62B43 /* TSTradeRemindController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTradeRemindController.h; sourceTree = "<group>"; };
+		B0F408F51489336C00B62B43 /* TSTradeRemindController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTradeRemindController.m; sourceTree = "<group>"; };
+		B0F408F7148937DA00B62B43 /* TSAppsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAppsListViewController.h; sourceTree = "<group>"; };
+		B0F408F8148937DA00B62B43 /* TSAppsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAppsListViewController.m; sourceTree = "<group>"; };
+		B0F408FA14893B5900B62B43 /* TSAppsGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAppsGridViewController.h; sourceTree = "<group>"; };
+		B0F408FB14893B5900B62B43 /* TSAppsGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAppsGridViewController.m; sourceTree = "<group>"; };
+		B0F408FD14893FBE00B62B43 /* TSSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSSettingController.h; sourceTree = "<group>"; };
+		B0F408FE14893FBE00B62B43 /* TSSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSSettingController.m; sourceTree = "<group>"; };
+		B0F71E78148A07A8009B667B /* TSFeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSFeedbackController.h; sourceTree = "<group>"; };
+		B0F71E79148A07A8009B667B /* TSFeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSFeedbackController.m; sourceTree = "<group>"; };
+		B0F71E7F148A6CD7009B667B /* TSHelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSHelpController.h; sourceTree = "<group>"; };
+		B0F71E80148A6CD7009B667B /* TSHelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSHelpController.m; sourceTree = "<group>"; };
+		B0F71E82148A6EA2009B667B /* TSHelp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TSHelp.html; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B02B02461487BBF000B5F048 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B02B02791487BC6200B5F048 /* QuartzCore.framework in Frameworks */,
+				B02B024E1487BBF000B5F048 /* UIKit.framework in Frameworks */,
+				B02B02501487BBF000B5F048 /* Foundation.framework in Frameworks */,
+				B02B02521487BBF000B5F048 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B02B023E1487BBF000B5F048 = {
+			isa = PBXGroup;
+			children = (
+				B02B02531487BBF000B5F048 /* TTShop */,
+				B02B024C1487BBF000B5F048 /* Frameworks */,
+				B02B024A1487BBF000B5F048 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B02B024A1487BBF000B5F048 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B02B02491487BBF000B5F048 /* TTShop.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B02B024C1487BBF000B5F048 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B02B02781487BC6200B5F048 /* QuartzCore.framework */,
+				B02B024D1487BBF000B5F048 /* UIKit.framework */,
+				B02B024F1487BBF000B5F048 /* Foundation.framework */,
+				B02B02511487BBF000B5F048 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B02B02531487BBF000B5F048 /* TTShop */ = {
+			isa = PBXGroup;
+			children = (
+				B0F408D91489235E00B62B43 /* Classes */,
+				B0F408CC1489153E00B62B43 /* Resources */,
+				B0F408C014890BF500B62B43 /* Common */,
+				B02B025C1487BBF000B5F048 /* TSAppDelegate.h */,
+				B02B025D1487BBF000B5F048 /* TSAppDelegate.m */,
+				B02B02541487BBF000B5F048 /* Supporting Files */,
+			);
+			path = TTShop;
+			sourceTree = "<group>";
+		};
+		B02B02541487BBF000B5F048 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B02B02551487BBF000B5F048 /* TTShop-Info.plist */,
+				B02B02561487BBF000B5F048 /* InfoPlist.strings */,
+				B02B02591487BBF000B5F048 /* main.m */,
+				B02B025B1487BBF000B5F048 /* TTShop-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B0616A5A1495035600FF111B /* VertifyPhone */ = {
+			isa = PBXGroup;
+			children = (
+				B0616A5B1495038D00FF111B /* TSVertifyPhoneController.h */,
+				B0616A5C1495038D00FF111B /* TSVertifyPhoneController.m */,
+			);
+			name = VertifyPhone;
+			sourceTree = "<group>";
+		};
+		B0D07E7A148BBCB60096CDFC /* MobileCharge */ = {
+			isa = PBXGroup;
+			children = (
+				B0C4F6C91496308E009AD7C5 /* TSMobileChargeController.h */,
+				B0C4F6CA1496308E009AD7C5 /* TSMobileChargeController.m */,
+			);
+			name = MobileCharge;
+			sourceTree = "<group>";
+		};
+		B0D07E7B148BBCDA0096CDFC /* GameCard */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GameCard;
+			sourceTree = "<group>";
+		};
+		B0F408C014890BF500B62B43 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B0F408C314890CD800B62B43 /* STEventDispatcher.h */,
+				B0F408C414890CD800B62B43 /* STEventDispatcher.m */,
+				B0F408C214890C1A00B62B43 /* Net */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		B0F408C214890C1A00B62B43 /* Net */ = {
+			isa = PBXGroup;
+			children = (
+				B0F408C614890CEB00B62B43 /* STURLLoader.h */,
+				B0F408C714890CEB00B62B43 /* STURLLoader.m */,
+				B0F408C814890CEB00B62B43 /* STURLRequest.h */,
+				B0F408C914890CEB00B62B43 /* STURLRequest.m */,
+			);
+			name = Net;
+			sourceTree = "<group>";
+		};
+		B0F408CC1489153E00B62B43 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B0F408CE1489159500B62B43 /* UI */,
+				B0F408CD1489157600B62B43 /* Images */,
+				B0F71E82148A6EA2009B667B /* TSHelp.html */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B0F408CD1489157600B62B43 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B0A36460148D0E37000D02B3 /* icon140.png */,
+				B0F408E5148928C700B62B43 /* More */,
+				B02B02691487BBF000B5F048 /* second.png */,
+				B02B026B1487BBF000B5F048 /* second@2x.png */,
+				B02B02621487BBF000B5F048 /* first.png */,
+				B02B02641487BBF000B5F048 /* first@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		B0F408CE1489159500B62B43 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B0F408D3148917D100B62B43 /* MainWindow.xib */,
+				B0D07E78148BAE2C0096CDFC /* TSAbout.xib */,
+				B0616A551494FBDC00FF111B /* TSTradeRecords.xib */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		B0F408D91489235E00B62B43 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B0616A5A1495035600FF111B /* VertifyPhone */,
+				B0F408DE1489246200B62B43 /* Apps */,
+				B0F408DF148924B700B62B43 /* TradeRecords */,
+				B0F408E11489255400B62B43 /* Notice */,
+				B0F408E01489254A00B62B43 /* More */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		B0F408DE1489246200B62B43 /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				B0F408F7148937DA00B62B43 /* TSAppsListViewController.h */,
+				B0F408F8148937DA00B62B43 /* TSAppsListViewController.m */,
+				B0F408FA14893B5900B62B43 /* TSAppsGridViewController.h */,
+				B0F408FB14893B5900B62B43 /* TSAppsGridViewController.m */,
+				B0818BB71497949400118CCE /* TSHistoryPhoneController.h */,
+				B0818BB81497949400118CCE /* TSHistoryPhoneController.m */,
+				B0D07E7B148BBCDA0096CDFC /* GameCard */,
+				B0D07E7A148BBCB60096CDFC /* MobileCharge */,
+			);
+			name = Apps;
+			sourceTree = "<group>";
+		};
+		B0F408DF148924B700B62B43 /* TradeRecords */ = {
+			isa = PBXGroup;
+			children = (
+				B0C1AE6E14924F150092A094 /* TSTradeRecordsController.h */,
+				B0C1AE6F14924F150092A094 /* TSTradeRecordsController.m */,
+			);
+			name = TradeRecords;
+			sourceTree = "<group>";
+		};
+		B0F408E01489254A00B62B43 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				B0F408E21489264D00B62B43 /* TSMoreController.h */,
+				B0F408E31489264D00B62B43 /* TSMoreController.m */,
+				B0F408FD14893FBE00B62B43 /* TSSettingController.h */,
+				B0F408FE14893FBE00B62B43 /* TSSettingController.m */,
+				B0F71E78148A07A8009B667B /* TSFeedbackController.h */,
+				B0F71E79148A07A8009B667B /* TSFeedbackController.m */,
+				B0F71E7F148A6CD7009B667B /* TSHelpController.h */,
+				B0F71E80148A6CD7009B667B /* TSHelpController.m */,
+				B0D07E72148BA40D0096CDFC /* TSAboutController.h */,
+				B0D07E73148BA40D0096CDFC /* TSAboutController.m */,
+			);
+			name = More;
+			sourceTree = "<group>";
+		};
+		B0F408E11489255400B62B43 /* Notice */ = {
+			isa = PBXGroup;
+			children = (
+				B0F408F41489336C00B62B43 /* TSTradeRemindController.h */,
+				B0F408F51489336C00B62B43 /* TSTradeRemindController.m */,
+				B0D54834148E6540000C9587 /* TSTradeRemindModel.h */,
+				B0D54835148E6540000C9587 /* TSTradeRemindModel.m */,
+				B0F408F11489322A00B62B43 /* TSSysNoticeController.h */,
+				B0F408F21489322A00B62B43 /* TSSysNoticeController.m */,
+				B06BB0F51490FC0C007B388F /* TSTradeRemindCell.h */,
+				B06BB0F61490FC0C007B388F /* TSTradeRemindCell.m */,
+			);
+			name = Notice;
+			sourceTree = "<group>";
+		};
+		B0F408E5148928C700B62B43 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				B0F408E6148928DA00B62B43 /* more_cell_update.png */,
+				B0F408E7148928DA00B62B43 /* more_cell_update@2x.png */,
+			);
+			name = More;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B02B02481487BBF000B5F048 /* TTShop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B02B02751487BBF000B5F048 /* Build configuration list for PBXNativeTarget "TTShop" */;
+			buildPhases = (
+				B02B02451487BBF000B5F048 /* Sources */,
+				B02B02461487BBF000B5F048 /* Frameworks */,
+				B02B02471487BBF000B5F048 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TTShop;
+			productName = TTShop;
+			productReference = B02B02491487BBF000B5F048 /* TTShop.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B02B02401487BBF000B5F048 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = PlayStation;
+			};
+			buildConfigurationList = B02B02431487BBF000B5F048 /* Build configuration list for PBXProject "TTShop" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B02B023E1487BBF000B5F048;
+			productRefGroup = B02B024A1487BBF000B5F048 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B02B02481487BBF000B5F048 /* TTShop */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B02B02471487BBF000B5F048 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B02B02581487BBF000B5F048 /* InfoPlist.strings in Resources */,
+				B02B02631487BBF000B5F048 /* first.png in Resources */,
+				B02B02651487BBF000B5F048 /* first@2x.png in Resources */,
+				B02B026A1487BBF000B5F048 /* second.png in Resources */,
+				B02B026C1487BBF000B5F048 /* second@2x.png in Resources */,
+				B0F408D4148917D100B62B43 /* MainWindow.xib in Resources */,
+				B0F408E8148928DA00B62B43 /* more_cell_update.png in Resources */,
+				B0F408E9148928DA00B62B43 /* more_cell_update@2x.png in Resources */,
+				B0F71E83148A6EA2009B667B /* TSHelp.html in Resources */,
+				B0D07E79148BAE2C0096CDFC /* TSAbout.xib in Resources */,
+				B0A36461148D0E37000D02B3 /* icon140.png in Resources */,
+				B0616A561494FBDC00FF111B /* TSTradeRecords.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B02B02451487BBF000B5F048 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B02B025A1487BBF000B5F048 /* main.m in Sources */,
+				B02B025E1487BBF000B5F048 /* TSAppDelegate.m in Sources */,
+				B0F408C514890CD800B62B43 /* STEventDispatcher.m in Sources */,
+				B0F408CA14890CEB00B62B43 /* STURLLoader.m in Sources */,
+				B0F408CB14890CEB00B62B43 /* STURLRequest.m in Sources */,
+				B0F408E41489264D00B62B43 /* TSMoreController.m in Sources */,
+				B0F408F31489322A00B62B43 /* TSSysNoticeController.m in Sources */,
+				B0F408F61489336C00B62B43 /* TSTradeRemindController.m in Sources */,
+				B0F408F9148937DA00B62B43 /* TSAppsListViewController.m in Sources */,
+				B0F408FC14893B5900B62B43 /* TSAppsGridViewController.m in Sources */,
+				B0F408FF14893FBE00B62B43 /* TSSettingController.m in Sources */,
+				B0F71E7A148A07A8009B667B /* TSFeedbackController.m in Sources */,
+				B0F71E81148A6CD7009B667B /* TSHelpController.m in Sources */,
+				B0D07E74148BA40D0096CDFC /* TSAboutController.m in Sources */,
+				B0D54836148E6540000C9587 /* TSTradeRemindModel.m in Sources */,
+				B06BB0F71490FC0C007B388F /* TSTradeRemindCell.m in Sources */,
+				B0C1AE7014924F150092A094 /* TSTradeRecordsController.m in Sources */,
+				B0616A5D1495038D00FF111B /* TSVertifyPhoneController.m in Sources */,
+				B0C4F6CB1496308E009AD7C5 /* TSMobileChargeController.m in Sources */,
+				B0818BB91497949400118CCE /* TSHistoryPhoneController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B02B02561487BBF000B5F048 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B02B02571487BBF000B5F048 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B02B02731487BBF000B5F048 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B02B02741487BBF000B5F048 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B02B02761487BBF000B5F048 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TTShop/TTShop-Prefix.pch";
+				INFOPLIST_FILE = "TTShop/TTShop-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B02B02771487BBF000B5F048 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TTShop/TTShop-Prefix.pch";
+				INFOPLIST_FILE = "TTShop/TTShop-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B02B02431487BBF000B5F048 /* Build configuration list for PBXProject "TTShop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B02B02731487BBF000B5F048 /* Debug */,
+				B02B02741487BBF000B5F048 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B02B02751487BBF000B5F048 /* Build configuration list for PBXNativeTarget "TTShop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B02B02761487BBF000B5F048 /* Debug */,
+				B02B02771487BBF000B5F048 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B02B02401487BBF000B5F048 /* Project object */;
+}
