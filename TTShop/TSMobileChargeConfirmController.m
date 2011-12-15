@@ -1,17 +1,15 @@
 //
-//  TSHistoryPhoneController.m
+//  TSMobileChargeConfirmController.m
 //  TTShop
 //
-//  Created by Steven Li on 12/13/11.
-//  Copyright (c) 2011 PlayStation. All rights reserved.
+//  Created by Steven Li on 11-12-15.
+//  Copyright (c) 2011年 TTF Inc. All rights reserved.
 //
 
-#import "TSHistoryPhoneController.h"
+#import "TSMobileChargeConfirmController.h"
 
 
-@implementation TSHistoryPhoneController
-
-@synthesize delegate;
+@implementation TSMobileChargeConfirmController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -80,12 +78,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+#warning Potentially incomplete method implementation.
+    // Return the number of sections.
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -94,11 +96,10 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    cell.textLabel.text = @"萌奇奇";
-    cell.detailTextLabel.text = @"13410260771";
+    // Configure the cell...
     
     return cell;
 }
@@ -146,12 +147,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if (delegate)
-    {
-        [delegate performSelector:@selector(tsHistoryPhoneController:didSelectRowAtIndexPath:) withObject:self withObject:indexPath];
-    }
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     [detailViewController release];
+     */
 }
 
 @end

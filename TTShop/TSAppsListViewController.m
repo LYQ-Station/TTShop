@@ -8,6 +8,7 @@
 
 #import "TSAppsListViewController.h"
 #import "TSAppsGridViewController.h"
+#import "TSGameChargeController.h"
 #import "TSMobileChargeController.h"
 
 
@@ -148,13 +149,33 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (1 == indexPath.section)
+    UIViewController *ctrl = nil;
+    
+    if (0 == indexPath.section)
     {
-        TSMobileChargeController *ctrl = [[TSMobileChargeController alloc] initWithStyle:UITableViewStyleGrouped];
-        ctrl.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:ctrl animated:YES];
-        [ctrl release];
+        ctrl = [[TSGameChargeController alloc] initWithStyle:UITableViewStyleGrouped];
     }
+    else if (1 == indexPath.section)
+    {
+        ctrl = [[TSMobileChargeController alloc] initWithStyle:UITableViewStyleGrouped];
+    }
+    else if (2 == indexPath.section)
+    {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:nil
+                                                     message:@"暂时未开通撒！"
+                                                    delegate:nil
+                                           cancelButtonTitle:@"晓得了"
+                                           otherButtonTitles:nil, nil];
+        
+        [av show];
+        [av release];
+        
+        return;
+    }
+    
+    ctrl.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:ctrl animated:YES];
+    [ctrl release];
 }
 
 - (CGFloat)tableView: (UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

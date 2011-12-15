@@ -9,9 +9,12 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TSMobileChargeController.h"
 #import "TSHistoryPhoneController.h"
+#import "TSMobileChargeConfirmController.h"
 
 
 @implementation TSMobileChargeController
+
+@synthesize tab_ctrl_inner;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -20,6 +23,13 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void) dealloc
+{
+    [tab_ctrl_inner release];
+    
+    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,19 +50,20 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.scrollEnabled = NO;
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    UIBarButtonItem *btn_next_step = [[UIBarButtonItem alloc] initWithTitle:@"下一步"
+                                                                      style:UIBarButtonItemStyleDone
+                                                                     target:self
+                                                                     action:@selector(btnNextStepClick:)];
+    self.navigationItem.rightBarButtonItem = btn_next_step;
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.tab_ctrl_inner = nil;
+    self.navigationItem.rightBarButtonItem = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -108,7 +119,6 @@
     if (0 == indexPath.section)
     {
         cell.textLabel.text = @"充值号码：";
-        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         
         UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(88.0f, 12.0f, 188.0f, 26.0f)];
         tf.font = [UIFont systemFontOfSize:14.0f];
@@ -116,20 +126,18 @@
         tf.keyboardType = UIKeyboardTypeNumberPad;
         [cell addSubview:tf];
         [tf release];
+        
+        tf_phone_no = tf;
+        
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        [btn addTarget:self action:@selector(btnContactClick:) forControlEvents:UIControlEventTouchUpInside];
+        cell.accessoryView = btn;
     }
     else if (1 == indexPath.section)
     {
-//        for (id sv in cell.subviews)
-//        {
-//            if ([@"UITableViewCellContentView" isEqualToString:NSStringFromClass([sv class])])
-//            {
-//                UIView *v = [[UIView alloc] initWithFrame:cell.frame];
-//                v.backgroundColor = [UIColor yellowColor];
-//                [sv addSubview:v];
-//                [v release];
-//                break;
-//            }
-//        }
+        
     }
     
     return cell;
@@ -159,45 +167,6 @@
     return nil;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -215,7 +184,7 @@
     if (1 == indexPath.section)
     {
         cell.clipsToBounds = YES;
-        cell.backgroundColor = [UIColor blueColor];
+//        cell.backgroundColor = [UIColor blueColor];
         
         for (id sv in cell.subviews)
         {
@@ -226,30 +195,85 @@
                 UIView *tmp_v = (UIView *)sv;
                 tmp_v.clipsToBounds = YES;
                 
-//                UITableViewController *ctrl = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
-//                ctrl.tableView.frame = cell.bounds;
-//                [tmp_v addSubview:ctrl.tableView];
-                
-//                TSHistoryPhoneController *ctrl = [[TSHistoryPhoneController alloc] initWithStyle:UITableViewStylePlain];
-//                ctrl.tableView.frame = cell.bounds;
-//                [tmp_v addSubview:ctrl.tableView];
+                TSHistoryPhoneController *ctrl = [[TSHistoryPhoneController alloc] initWithStyle:UITableViewStylePlain];
+                ctrl.tableView.frame = tmp_v.frame;
+                [cell addSubview:ctrl.tableView];
+                ctrl.tableView.layer.borderWidth = 1.0f;
+                ctrl.tableView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
                 
                 CALayer *mask_layer = [CALayer layer];
                 [tmp_v.layer addSublayer:mask_layer];
                 mask_layer.backgroundColor = [[UIColor yellowColor] CGColor];
-                mask_layer.frame = cell.bounds;
-                mask_layer.cornerRadius = 15.0f;
-                tmp_v.layer.mask = mask_layer;
-                tmp_v.layer.masksToBounds = YES;
+                mask_layer.frame = tmp_v.frame;
+                mask_layer.cornerRadius = 13.0f;
+                cell.layer.mask = mask_layer;
+                
+                ctrl.delegate = self;
+                self.tab_ctrl_inner = ctrl;
                 
                 break;
             }
         }
-        
-//        UIView *v = [[UIView alloc] initWithFrame:cell.frame];
-//        v.backgroundColor = [UIColor blueColor];
-//        [cell addSubview:v];
     }
+}
+
+#pragma mark - select contact from AddressBook
+
+- (void) btnContactClick:(id)sender
+{
+    ABPeoplePickerNavigationController *ctrl = [[ABPeoplePickerNavigationController alloc] init];
+    ctrl.peoplePickerDelegate = self;
+    [self presentModalViewController:ctrl animated:YES];
+    [ctrl release];
+}
+
+#pragma mark ABPeoplePickerNavigationControllerDelegate
+
+- (BOOL) peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
+{
+    return YES;
+}
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+{
+    if (kABPersonPhoneProperty == property)
+    {
+        ABMutableMultiValueRef phones = ABRecordCopyValue(person, property);
+        int idx = ABMultiValueGetIndexForIdentifier(phones, identifier);
+        NSString *phone = (NSString *)ABMultiValueCopyValueAtIndex(phones, idx);
+        tf_phone_no.text = phone;
+        [phone release];
+    }
+    
+    [peoplePicker dismissModalViewControllerAnimated:YES];
+    
+    return NO;
+}
+
+- (void) peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
+{
+    [peoplePicker dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - TSHistoryPhoneDelegate
+
+- (void) tsHistoryPhoneController:(TSHistoryPhoneController *)controller didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    UITableViewCell *cell = [controller.tableView cellForRowAtIndexPath:indexPath];
+    
+    if (tf_phone_no)
+    {
+        tf_phone_no.text = cell.detailTextLabel.text;
+    }
+}
+
+#pragma mark - btn next step click
+
+- (void) btnNextStepClick:(id)sender
+{
+    TSMobileChargeConfirmController *ctrl = [[TSMobileChargeConfirmController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:ctrl animated:YES];
+    [ctrl release];
 }
 
 @end

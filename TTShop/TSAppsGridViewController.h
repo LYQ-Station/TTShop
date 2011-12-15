@@ -22,6 +22,10 @@
 
 - (void) addButton:(UIButton *)btn;
 
-- (void) btnGameCard:(id)sender;
+- (void) btnGameChargeClick:(id)sender;
+
+- (void) btnMobileChargeClick:(id)sender;
+
+- (void) btnBankServiceClick:(id)sender;
 
 @end

@@ -8,6 +8,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "TSAppsGridViewController.h"
+#import "TSGameChargeController.h"
+#import "TSMobileChargeController.h"
 
 @implementation TSAppsGridViewController
 
@@ -94,49 +96,63 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
 	btn.titleLabel.text = @"游戏充值";
 	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
-	[btn addTarget:self action:@selector(btnGameCard:) forControlEvents:UIControlEventTouchUpInside];
+	[btn addTarget:self action:@selector(btnGameChargeClick:) forControlEvents:UIControlEventTouchUpInside];
 	[self addButton:btn];
 	[btn release];
     
     btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	btn.titleLabel.text = @"游戏充值";
+	btn.titleLabel.text = @"手机充值";
 	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
-	[btn addTarget:self action:@selector(btnGameCard:) forControlEvents:UIControlEventTouchUpInside];
+	[btn addTarget:self action:@selector(btnMobileChargeClick:) forControlEvents:UIControlEventTouchUpInside];
 	[self addButton:btn];
 	[btn release];
     
     btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	btn.titleLabel.text = @"游戏充值";
+	btn.titleLabel.text = @"转帐汇款";
 	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
-	[btn addTarget:self action:@selector(btnGameCard:) forControlEvents:UIControlEventTouchUpInside];
+	[btn addTarget:self action:@selector(btnBankServiceClick:) forControlEvents:UIControlEventTouchUpInside];
 	[self addButton:btn];
 	[btn release];
     
     btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	btn.titleLabel.text = @"游戏充值";
+	btn.titleLabel.text = @"我的测试";
 	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
-	[btn addTarget:self action:@selector(btnGameCard:) forControlEvents:UIControlEventTouchUpInside];
 	[self addButton:btn];
 	[btn release];
     
     btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	btn.titleLabel.text = @"游戏充值";
+	btn.titleLabel.text = @"我的测试";
 	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
-	[btn addTarget:self action:@selector(btnGameCard:) forControlEvents:UIControlEventTouchUpInside];
 	[self addButton:btn];
 	[btn release];
     
     btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	btn.titleLabel.text = @"游戏充值";
+	btn.titleLabel.text = @"我的测试";
 	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
-	[btn addTarget:self action:@selector(btnGameCard:) forControlEvents:UIControlEventTouchUpInside];
 	[self addButton:btn];
 	[btn release];
     
     btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	btn.titleLabel.text = @"游戏充值";
+	btn.titleLabel.text = @"我的测试";
 	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
-	[btn addTarget:self action:@selector(btnGameCard:) forControlEvents:UIControlEventTouchUpInside];
+	[self addButton:btn];
+	[btn release];
+    
+    btn = [UIButton buttonWithType:UIButtonTypeCustom];
+	btn.titleLabel.text = @"我的测试";
+	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
+	[self addButton:btn];
+	[btn release];
+    
+    btn = [UIButton buttonWithType:UIButtonTypeCustom];
+	btn.titleLabel.text = @"我的测试";
+	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
+	[self addButton:btn];
+	[btn release];
+    
+    btn = [UIButton buttonWithType:UIButtonTypeCustom];
+	btn.titleLabel.text = @"我的测试";
+	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
 	[self addButton:btn];
 	[btn release];
 }
@@ -166,7 +182,7 @@
     }
 }
 
-- (void)  addButton:(UIButton *)btn
+- (void) addButton:(UIButton *)btn
 {
     if (!buttons)
 	{
@@ -198,7 +214,7 @@
 	
 	btn.tag = btn_idx;
 	btn.frame = CGRectMake((27.0f + 70.0f) * ((btn_page_idx + 3 ) % 3) + 27.0f,
-						   (20.0f + 90.0f) * ceilf(btn_page_idx / 3) + 30.0f,
+						   (20.0f + 90.0f) * ceilf(btn_page_idx / 3) + 20.0f,
 						   70.0f,
 						   70.0f);
 	
@@ -234,9 +250,32 @@
 	[buttons addObject:btn];
 }
 
-- (void)  btnGameCard:(id)sender
+- (void) btnGameChargeClick:(id)sender
 {
+    UIViewController *ctrl = [[TSGameChargeController alloc] initWithStyle:UITableViewStyleGrouped];
+    ctrl.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:ctrl animated:YES];
+    [ctrl release];
+}
+
+- (void) btnMobileChargeClick:(id)sender
+{
+    UIViewController *ctrl = [[TSMobileChargeController alloc] initWithStyle:UITableViewStyleGrouped];
+    ctrl.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:ctrl animated:YES];
+    [ctrl release];
+}
+
+- (void) btnBankServiceClick:(id)sender
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:nil
+                                                 message:@"暂时未开通撒！"
+                                                delegate:nil
+                                       cancelButtonTitle:@"晓得了"
+                                       otherButtonTitles:nil, nil];
     
+    [av show];
+    [av release];
 }
 
 @end

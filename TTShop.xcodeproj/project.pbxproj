@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6248A2FC14999B87000B1DA7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6248A2FB14999B87000B1DA7 /* AddressBook.framework */; };
+		6248A2FE14999B8B000B1DA7 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6248A2FD14999B8B000B1DA7 /* AddressBookUI.framework */; };
+		6248A3011499C19C000B1DA7 /* TSGameChargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6248A3001499C19C000B1DA7 /* TSGameChargeController.m */; };
+		6248A3041499D661000B1DA7 /* TSMobileChargeConfirmController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6248A3031499D661000B1DA7 /* TSMobileChargeConfirmController.m */; };
+		6248A3071499DC8A000B1DA7 /* TSViewOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6248A3061499DC8A000B1DA7 /* TSViewOrderController.m */; };
+		6248A30A1499DF41000B1DA7 /* TSOrderPropertyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6248A3091499DF41000B1DA7 /* TSOrderPropertyController.m */; };
 		B02B024E1487BBF000B5F048 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B024D1487BBF000B5F048 /* UIKit.framework */; };
 		B02B02501487BBF000B5F048 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B024F1487BBF000B5F048 /* Foundation.framework */; };
 		B02B02521487BBF000B5F048 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B02511487BBF000B5F048 /* CoreGraphics.framework */; };
@@ -46,6 +52,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6248A2FB14999B87000B1DA7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		6248A2FD14999B8B000B1DA7 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		6248A2FF1499C19C000B1DA7 /* TSGameChargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGameChargeController.h; sourceTree = "<group>"; };
+		6248A3001499C19C000B1DA7 /* TSGameChargeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGameChargeController.m; sourceTree = "<group>"; };
+		6248A3021499D661000B1DA7 /* TSMobileChargeConfirmController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMobileChargeConfirmController.h; sourceTree = "<group>"; };
+		6248A3031499D661000B1DA7 /* TSMobileChargeConfirmController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMobileChargeConfirmController.m; sourceTree = "<group>"; };
+		6248A3051499DC8A000B1DA7 /* TSViewOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSViewOrderController.h; sourceTree = "<group>"; };
+		6248A3061499DC8A000B1DA7 /* TSViewOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSViewOrderController.m; sourceTree = "<group>"; };
+		6248A3081499DF41000B1DA7 /* TSOrderPropertyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSOrderPropertyController.h; sourceTree = "<group>"; };
+		6248A3091499DF41000B1DA7 /* TSOrderPropertyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSOrderPropertyController.m; sourceTree = "<group>"; };
 		B02B02491487BBF000B5F048 /* TTShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B02B024D1487BBF000B5F048 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B02B024F1487BBF000B5F048 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -111,6 +127,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6248A2FE14999B8B000B1DA7 /* AddressBookUI.framework in Frameworks */,
+				6248A2FC14999B87000B1DA7 /* AddressBook.framework in Frameworks */,
 				B02B02791487BC6200B5F048 /* QuartzCore.framework in Frameworks */,
 				B02B024E1487BBF000B5F048 /* UIKit.framework in Frameworks */,
 				B02B02501487BBF000B5F048 /* Foundation.framework in Frameworks */,
@@ -124,11 +142,14 @@
 		B02B023E1487BBF000B5F048 = {
 			isa = PBXGroup;
 			children = (
+				6248A2FD14999B8B000B1DA7 /* AddressBookUI.framework */,
+				6248A2FB14999B87000B1DA7 /* AddressBook.framework */,
 				B02B02531487BBF000B5F048 /* TTShop */,
 				B02B024C1487BBF000B5F048 /* Frameworks */,
 				B02B024A1487BBF000B5F048 /* Products */,
 			);
 			sourceTree = "<group>";
+			wrapsLines = 0;
 		};
 		B02B024A1487BBF000B5F048 /* Products */ = {
 			isa = PBXGroup;
@@ -187,6 +208,8 @@
 			children = (
 				B0C4F6C91496308E009AD7C5 /* TSMobileChargeController.h */,
 				B0C4F6CA1496308E009AD7C5 /* TSMobileChargeController.m */,
+				6248A3021499D661000B1DA7 /* TSMobileChargeConfirmController.h */,
+				6248A3031499D661000B1DA7 /* TSMobileChargeConfirmController.m */,
 			);
 			name = MobileCharge;
 			sourceTree = "<group>";
@@ -194,6 +217,8 @@
 		B0D07E7B148BBCDA0096CDFC /* GameCard */ = {
 			isa = PBXGroup;
 			children = (
+				6248A2FF1499C19C000B1DA7 /* TSGameChargeController.h */,
+				6248A3001499C19C000B1DA7 /* TSGameChargeController.m */,
 			);
 			name = GameCard;
 			sourceTree = "<group>";
@@ -273,6 +298,10 @@
 				B0F408FB14893B5900B62B43 /* TSAppsGridViewController.m */,
 				B0818BB71497949400118CCE /* TSHistoryPhoneController.h */,
 				B0818BB81497949400118CCE /* TSHistoryPhoneController.m */,
+				6248A3051499DC8A000B1DA7 /* TSViewOrderController.h */,
+				6248A3061499DC8A000B1DA7 /* TSViewOrderController.m */,
+				6248A3081499DF41000B1DA7 /* TSOrderPropertyController.h */,
+				6248A3091499DF41000B1DA7 /* TSOrderPropertyController.m */,
 				B0D07E7B148BBCDA0096CDFC /* GameCard */,
 				B0D07E7A148BBCB60096CDFC /* MobileCharge */,
 			);
@@ -356,7 +385,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
-				ORGANIZATIONNAME = PlayStation;
+				ORGANIZATIONNAME = "TTF Inc.";
 			};
 			buildConfigurationList = B02B02431487BBF000B5F048 /* Build configuration list for PBXProject "TTShop" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -422,6 +451,10 @@
 				B0616A5D1495038D00FF111B /* TSVertifyPhoneController.m in Sources */,
 				B0C4F6CB1496308E009AD7C5 /* TSMobileChargeController.m in Sources */,
 				B0818BB91497949400118CCE /* TSHistoryPhoneController.m in Sources */,
+				6248A3011499C19C000B1DA7 /* TSGameChargeController.m in Sources */,
+				6248A3041499D661000B1DA7 /* TSMobileChargeConfirmController.m in Sources */,
+				6248A3071499DC8A000B1DA7 /* TSViewOrderController.m in Sources */,
+				6248A30A1499DF41000B1DA7 /* TSOrderPropertyController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
