@@ -112,7 +112,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    cell.imageView.image = [UIImage imageNamed:@"second"];
+    cell.imageView.image = [UIImage imageNamed:@"app_grid"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     if (0 == indexPath.section)
@@ -148,7 +148,7 @@
     else if (2 == indexPath.section)
     {
         cell.textLabel.text = @"检测更新";
-        cell.imageView.image = [UIImage imageNamed:@"more_cell_update"];
+        cell.imageView.image = [UIImage imageNamed:@"app_list"];
     }
     
     return cell;

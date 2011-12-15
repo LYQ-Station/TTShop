@@ -16,7 +16,8 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -126,6 +127,7 @@
     {
         UITextView *tv = [[UITextView alloc] initWithFrame:CGRectMake(17.0f, 5.0f, 285.0f, 90.0f)];
         tv.font = [UIFont systemFontOfSize:14.0f];
+        tv.backgroundColor = [UIColor clearColor];
         [cell addSubview:tv];
         [tv release];
     }
@@ -147,7 +149,7 @@
 {
     if (0 == section)
     {
-        return @"感谢您的支持，您的意见是我们前进的动力。";
+        return @"感谢您的支持，您的意见是我们前进的动力";
     }
     
     return nil;

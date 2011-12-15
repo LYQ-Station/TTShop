@@ -48,12 +48,15 @@
     
     self.title = @"生活应用";
     
-    UISegmentedControl *sg_ctrl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"x", @"a", nil]];
+    UISegmentedControl *sg_ctrl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"list", @"grid", nil]];
 	sg_ctrl.segmentedControlStyle = UISegmentedControlStyleBar;
-	[sg_ctrl addTarget:self action:@selector(segmentedControlChange:) forControlEvents:UIControlEventValueChanged];
-	sg_ctrl.frame = CGRectMake(0, 0, 70, 30);
+    sg_ctrl.frame = CGRectMake(0, 0, 70, 30);
 	sg_ctrl.selectedSegmentIndex = 0;
-    self.sg_switch = sg_ctrl;
+    [sg_ctrl setImage:[UIImage imageNamed:@"app_list"] forSegmentAtIndex:0];
+    [sg_ctrl setImage:[UIImage imageNamed:@"app_grid"] forSegmentAtIndex:1];
+	[sg_ctrl addTarget:self action:@selector(segmentedControlChange:) forControlEvents:UIControlEventValueChanged];
+    sg_ctrl.frame = CGRectMake(0, 0, 70, 30);
+	sg_ctrl.selectedSegmentIndex = 0;    self.sg_switch = sg_ctrl;
     [sg_ctrl release];
     
     UIBarButtonItem *btn_view_switch = [[UIBarButtonItem alloc] initWithCustomView:sg_ctrl];
