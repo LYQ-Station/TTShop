@@ -10,4 +10,6 @@
 
 @interface TSMobileChargeConfirmController : UITableViewController
 
+- (void) btnNextStepClick:(id)sender;
+
 @end

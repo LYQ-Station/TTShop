@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AddressBook/AddressBook.h>
+#import <AddressBookUI/AddressBookUI.h>
+#import "TSHistoryPhoneController.h"
 
-@interface TSGameChargeController : UITableViewController
+@interface TSGameChargeController : UITableViewController <TSHistoryPhoneDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate>
+{
+    UITextField                        *tf_phone_no;
+    TSHistoryPhoneController           *tab_ctrl_inner;
+}
+
+@property (nonatomic, retain) TSHistoryPhoneController *tab_ctrl_inner;
+
+- (void) btnContactClick:(id)sender;
 
 @end

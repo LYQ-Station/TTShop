@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TSOrderPropertyController.h"
 
 @interface TSViewOrderController : UITableViewController
+{
+    TSOrderPropertyController           *tab_ctrl_inner;
+}
+
+@property (nonatomic, retain) TSOrderPropertyController *tab_ctrl_inner;
 
 @end
