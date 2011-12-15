@@ -56,6 +56,7 @@
                                                                      target:self
                                                                      action:@selector(btnNextStepClick:)];
     self.navigationItem.rightBarButtonItem = btn_next_step;
+    [btn_next_step release];
 }
 
 - (void)viewDidUnload

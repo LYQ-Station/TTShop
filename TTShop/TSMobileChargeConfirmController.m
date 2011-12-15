@@ -10,15 +10,35 @@
 #import "TSViewOrderController.h"
 
 
+static UITextView *tmp_text_view = nil;
+static NSArray *values = nil;
+static NSArray *types = nil;
+
 @implementation TSMobileChargeConfirmController
+
+@synthesize tb_for_picker;
+@synthesize pv_picker;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [tb_for_picker release];
+    [pv_picker release];
+    
+    [tmp_text_view release];
+    [values release];
+    [types release];
+    
+    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,6 +62,37 @@
                                                                      target:self
                                                                      action:@selector(btnNextStepClick:)];
     self.navigationItem.rightBarButtonItem = btn_next_step;
+    [btn_next_step release];
+    
+    CGRect tmp_frm = [UIScreen mainScreen].bounds;
+    tmp_frm.size.height = 216.0f;
+    pv_picker = [[UIPickerView alloc] initWithFrame:tmp_frm];
+    pv_picker.showsSelectionIndicator = YES;
+    
+    tmp_frm.size.height = 44.0f;
+    tb_for_picker = [[UIToolbar alloc] initWithFrame:tmp_frm];
+    tb_for_picker.barStyle = UIBarStyleBlackTranslucent;
+    
+        //create tool bar for data picker
+    UIBarButtonItem *btn_close = [[UIBarButtonItem alloc] initWithTitle:@"关闭键盘"
+                                                                  style:UIBarButtonItemStyleBordered
+                                                                 target:self
+                                                                 action:@selector(btnCloseKeyBoardClick:)];
+    
+    UIBarButtonItem *btn_submit = [[UIBarButtonItem alloc] initWithTitle:@"选择"
+                                                                   style:UIBarButtonItemStyleDone
+                                                                  target:self
+                                                                  action:@selector(btnSubmitClick:)];
+    
+    UIBarButtonItem *split = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    NSArray *items = [NSArray arrayWithObjects:btn_close, split, btn_submit, nil];
+    
+    [btn_close release];
+    [btn_submit release];
+    [split release];
+    
+    tb_for_picker.items = items;
 }
 
 - (void)viewDidUnload
@@ -49,6 +100,8 @@
     [super viewDidUnload];
     
     self.navigationItem.rightBarButtonItem = nil;
+    self.tb_for_picker = nil;
+    self.pv_picker = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -163,14 +216,19 @@
 {
     if (1 == indexPath.section)
     {
-        if (0 == indexPath.row)
+        pv_picker.tag = indexPath.row;
+        pv_picker.delegate = self;
+        pv_picker.dataSource = self;
+        
+        if (!tmp_text_view)
         {
-            
+            tmp_text_view = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 0.0f)];
+            [self.tableView addSubview:tmp_text_view];
+            tmp_text_view.inputView = pv_picker;
+            tmp_text_view.inputAccessoryView = tb_for_picker;
         }
-        else
-        {
-            
-        }
+        
+        [tmp_text_view becomeFirstResponder];
     }
 }
 
@@ -181,6 +239,63 @@
     TSViewOrderController *ctrl = [[TSViewOrderController alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:ctrl animated:YES];
     [ctrl release];
+}
+
+- (void) btnCloseKeyBoardClick:(id)sender
+{
+    [tmp_text_view resignFirstResponder];
+    
+    tmp_text_view.inputView = nil;
+    tmp_text_view.inputAccessoryView = nil;
+    [tmp_text_view removeFromSuperview];
+    tmp_text_view = nil;
+    
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+}
+
+- (void) btnSubmitClick:(id)sender
+{
+    [self btnCloseKeyBoardClick:nil];
+}
+
+#pragma mark - picker view dataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if (0 == pickerView.tag)
+    {
+        return 3;
+    }
+    
+    return 2;
+}
+
+
+#pragma mark - picker view delegate
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if (0 == pickerView.tag)
+    {
+        if (!values)
+        {
+            values = [[NSArray alloc] initWithObjects:@"30元(售价29.7元)", @"50元(售价49.5元)", @"100元(售价99.0元)", nil];
+        }
+        
+        return [values objectAtIndex:row];
+    }
+    
+    if (!types)
+    {
+        types = [[NSArray alloc] initWithObjects:@"快速充值", @"普通充值", nil];
+    }
+    
+    return [types objectAtIndex:row];
 }
 
 @end

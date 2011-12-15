@@ -24,6 +24,13 @@
     return self;
 }
 
+- (void) dealloc
+{
+    [tab_ctrl_inner release];
+    
+    [super dealloc];
+}
+
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -42,13 +49,20 @@
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.scrollEnabled = NO;
+    
+    UIBarButtonItem *btn_next_step = [[UIBarButtonItem alloc] initWithTitle:@"下一步"
+                                                                      style:UIBarButtonItemStyleDone
+                                                                     target:self
+                                                                     action:@selector(btnNextStepClick:)];
+    self.navigationItem.rightBarButtonItem = btn_next_step;
+    [btn_next_step release];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.navigationItem.rightBarButtonItem  = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -286,6 +300,12 @@
     }
 }
 
+#pragma mark -
+
+- (void) btnNextStepClick:(id)sender
+{
+    
+}
 
 
 @end

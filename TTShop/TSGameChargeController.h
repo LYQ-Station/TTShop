@@ -21,4 +21,6 @@
 
 - (void) btnContactClick:(id)sender;
 
+- (void) btnNextStepClick:(id)sender;
+
 @end

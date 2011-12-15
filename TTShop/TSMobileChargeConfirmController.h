@@ -8,8 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TSMobileChargeConfirmController : UITableViewController
+@interface TSMobileChargeConfirmController : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+{
+    UIToolbar           *tb_for_picker;
+    UIPickerView        *pv_picker;
+}
+
+@property (nonatomic, retain) UIToolbar *tb_for_picker;
+@property (nonatomic, retain) UIPickerView *pv_picker;
+
+- (void) btnCloseKeyBoardClick:(id)sender;
 
 - (void) btnNextStepClick:(id)sender;
+
+- (void) btnSubmitClick:(id)sender;
 
 @end

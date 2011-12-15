@@ -25,7 +25,8 @@ static NSArray *t_types;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -42,6 +43,10 @@ static NSArray *t_types;
     [tb_submit release];
     [tb_for_picker release];
     [pv_picker release];
+    
+    [tmp_text_view release];
+    [b_types release];
+    [t_types release];
     
     [super dealloc];
 }
