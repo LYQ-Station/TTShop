@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TSPaymentController : UIViewController
+@interface TSPaymentController : UINavigationController <UITableViewDelegate, UITableViewDataSource>
+
+- (void) btnCloseClick:(id)sender;
 
 @end
