@@ -7,6 +7,7 @@
 //
 
 #import "TSSysNoticeController.h"
+#import "EGORefreshTableHeaderView.h"
 
 
 @implementation TSSysNoticeController
@@ -16,7 +17,8 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -25,6 +27,10 @@
 - (void) dealloc
 {
     self.sg_switch = nil;
+    
+    [refresh_view_h release];
+    [refresh_view_b release];
+    
     [super dealloc];
 }
 
@@ -56,13 +62,33 @@
 	self.navigationItem.titleView = sg_ctrl;
     [sg_ctrl release];
     self.sg_switch = sg_ctrl;
+    
+        //top refresh header
+	CGRect top_rect = CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, 320.0f, self.tableView.bounds.size.height);
+	refresh_view_h = [[EGORefreshTableHeaderView alloc] initWithoutDateLabel:top_rect];
+	refresh_view_h.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
+	[self.tableView addSubview:refresh_view_h];
+    
+        //bottom refresh header
+	CGRect bottom_rect = CGRectMake(0.0f, -50.0f, 320.0f, 60.0f);
+	refresh_view_b = [[EGORefreshTableHeaderView alloc] initWithoutDateLabel:bottom_rect];
+	refresh_view_b.backgroundColor = [UIColor whiteColor];
+	refresh_view_b.state = EGOOPullRefreshNormalUP;
+	[self.tableView addSubview:refresh_view_b];
+	refresh_view_b.hidden = YES;
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.sg_switch = nil;
+    
+    [refresh_view_h release];
+    refresh_view_h = nil;
+    
+    [refresh_view_b release];
+    refresh_view_b = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -132,6 +158,60 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (indexPath.row + 1 == 10 && tableView.contentSize.height > tableView.bounds.size.height)
+	{
+		CGRect bottom_rect = CGRectMake(0.0f, tableView.contentSize.height, 320.0f, 60.0f);
+		refresh_view_b.frame = bottom_rect;
+		refresh_view_b.hidden = NO;
+	}
+}
+
+- (void)scrollViewDidScroll: (UIScrollView *)scrollView
+{	
+	if (!scrollView.isDragging)
+	{
+		return;
+	}
+	
+	if (refresh_view_h.state == EGOOPullRefreshPulling && scrollView.contentOffset.y > -65.0f && scrollView.contentOffset.y < 0.0f) 
+	{
+		[refresh_view_h setState:EGOOPullRefreshNormal];
+	} 
+	else if (refresh_view_h.state == EGOOPullRefreshNormal && scrollView.contentOffset.y < -65.0f) 
+	{
+		[refresh_view_h setState:EGOOPullRefreshPulling];
+	}
+	
+	if (refresh_view_b.state == EGOOPullRefreshPulling &&
+		scrollView.contentOffset.y + scrollView.bounds.size.height - scrollView.contentSize.height < 65.0f)
+	{
+		[refresh_view_b setState:EGOOPullRefreshNormalUP];
+	}
+	else if (refresh_view_b.state == EGOOPullRefreshNormalUP &&
+			 scrollView.contentOffset.y + scrollView.bounds.size.height - scrollView.contentSize.height > 65.0f)
+	{
+		[refresh_view_b setState:EGOOPullRefreshPulling];
+	}
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+	if (scrollView.contentOffset.y < - 65.0f)
+	{
+		[refresh_view_h setState:EGOOPullRefreshLoading];
+		self.tableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
+		
+	}
+	else if (scrollView.contentOffset.y + scrollView.bounds.size.height - scrollView.contentSize.height > 65.0f)
+	{
+		[refresh_view_b setState:EGOOPullRefreshLoading];
+		self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 60.0f, 0.0f);
+		
+	}
 }
 
 #pragma mark -

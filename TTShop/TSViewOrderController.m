@@ -46,6 +46,9 @@
     [super viewDidLoad];
 
     self.title = @"确认支付";
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.scrollEnabled = NO;
 }
 
 - (void)viewDidUnload
@@ -156,18 +159,17 @@
                 UIView *tmp_v = (UIView *)sv;
                 tmp_v.clipsToBounds = YES;
                 
+                CGRect mask_frm = tmp_v.frame;
+                mask_frm.origin.x += 1;
+                mask_frm.origin.y += 1;
+                mask_frm.size.width -= 1;
+                mask_frm.size.height -= 1;
+                
                 TSOrderPropertyController *ctrl = [[TSOrderPropertyController alloc] initWithStyle:UITableViewStylePlain];
                 ctrl.tableView.frame = tmp_v.frame;
+                ctrl.tableView.layer.cornerRadius = 14.0f;
+                ctrl.tableView.layer.masksToBounds = YES;
                 [cell addSubview:ctrl.tableView];
-                ctrl.tableView.layer.borderWidth = 1.0f;
-                ctrl.tableView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-                
-                CALayer *mask_layer = [CALayer layer];
-                [tmp_v.layer addSublayer:mask_layer];
-                mask_layer.backgroundColor = [[UIColor yellowColor] CGColor];
-                mask_layer.frame = tmp_v.frame;
-                mask_layer.cornerRadius = 13.0f;
-                cell.layer.mask = mask_layer;
                 
                 self.tab_ctrl_inner = ctrl;
                 

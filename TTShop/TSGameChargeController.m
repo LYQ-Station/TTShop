@@ -9,11 +9,16 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TSGameChargeController.h"
 #import "TSHistoryPhoneController.h"
+#import "TSViewOrderController.h"
 
+
+static UITextView *tmp_text_view = nil;
 
 @implementation TSGameChargeController
 
 @synthesize tab_ctrl_inner;
+@synthesize tb_for_picker;
+@synthesize pv_picker;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,6 +32,10 @@
 - (void) dealloc
 {
     [tab_ctrl_inner release];
+    [tb_for_picker release];
+    [pv_picker release];
+    
+    [tmp_text_view release];
     
     [super dealloc];
 }
@@ -56,6 +65,35 @@
                                                                      action:@selector(btnNextStepClick:)];
     self.navigationItem.rightBarButtonItem = btn_next_step;
     [btn_next_step release];
+    
+    CGRect tmp_frm = [UIScreen mainScreen].bounds;
+    tmp_frm.size.height = 216.0f;
+    pv_picker = [[UIPickerView alloc] initWithFrame:tmp_frm];
+    pv_picker.showsSelectionIndicator = YES;
+    
+    tmp_frm.size.height = 44.0f;
+    tb_for_picker = [[UIToolbar alloc] initWithFrame:tmp_frm];
+    tb_for_picker.barStyle = UIBarStyleBlackTranslucent;
+    
+    UIBarButtonItem *btn_close = [[UIBarButtonItem alloc] initWithTitle:@"关闭键盘"
+                                                                  style:UIBarButtonItemStyleBordered
+                                                                 target:self
+                                                                 action:@selector(btnCloseKeyBoardClick:)];
+    
+    UIBarButtonItem *btn_submit = [[UIBarButtonItem alloc] initWithTitle:@"选择"
+                                                                   style:UIBarButtonItemStyleDone
+                                                                  target:self
+                                                                  action:@selector(btnSubmitClick:)];
+    
+    UIBarButtonItem *split = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    NSArray *items = [NSArray arrayWithObjects:btn_close, split, btn_submit, nil];
+    
+    [btn_close release];
+    [btn_submit release];
+    [split release];
+    
+    tb_for_picker.items = items;
 }
 
 - (void)viewDidUnload
@@ -63,6 +101,11 @@
     [super viewDidUnload];
     
     self.navigationItem.rightBarButtonItem  = nil;
+    self.tb_for_picker = nil;
+    self.pv_picker = nil;
+    
+    [tmp_text_view release];
+    tmp_text_view = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -185,7 +228,7 @@
 {
     if (0 == section)
     {
-        return @"手机号码仅用于接收游戏点卡卡号和卡密";
+        return @"手机号仅用于接收游戏点卡卡号和卡密";
     }
     
     return nil;
@@ -195,14 +238,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    if (0 == indexPath.section)
+    {
+        pv_picker.delegate = self;
+        pv_picker.dataSource = self;
+        
+        if (!tmp_text_view)
+        {
+            tmp_text_view = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 0.0f)];
+            [self.tableView addSubview:tmp_text_view];
+            tmp_text_view.inputView = pv_picker;
+            tmp_text_view.inputAccessoryView = tb_for_picker;
+        }
+        
+        [tmp_text_view becomeFirstResponder];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -228,18 +278,17 @@
                 UIView *tmp_v = (UIView *)sv;
                 tmp_v.clipsToBounds = YES;
                 
+                CGRect mask_frm = tmp_v.frame;
+                mask_frm.origin.x += 1;
+                mask_frm.origin.y += 1;
+                mask_frm.size.width -= 1;
+                mask_frm.size.height -= 1;
+                
                 TSHistoryPhoneController *ctrl = [[TSHistoryPhoneController alloc] initWithStyle:UITableViewStylePlain];
                 ctrl.tableView.frame = tmp_v.frame;
+                ctrl.tableView.layer.cornerRadius = 14.0f;
+                ctrl.tableView.layer.masksToBounds = YES;
                 [cell addSubview:ctrl.tableView];
-                ctrl.tableView.layer.borderWidth = 1.0f;
-                ctrl.tableView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-                
-                CALayer *mask_layer = [CALayer layer];
-                [tmp_v.layer addSublayer:mask_layer];
-                mask_layer.backgroundColor = [[UIColor yellowColor] CGColor];
-                mask_layer.frame = tmp_v.frame;
-                mask_layer.cornerRadius = 13.0f;
-                cell.layer.mask = mask_layer;
                 
                 ctrl.delegate = self;
                 self.tab_ctrl_inner = ctrl;
@@ -300,11 +349,76 @@
     }
 }
 
+#pragma mark - picker view dataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 2;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if (0 == component)
+    {
+        return 30;
+    }
+    
+    return 5;
+}
+
+
+#pragma mark - picker view delegate
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    CGFloat w = ([UIScreen mainScreen].bounds.size.width - 20) / 3;
+    
+    if (0 == component)
+    {
+        return w * 2;
+    }
+    
+    return w;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if (0 == component)
+    {
+        return @"联众游戏";
+    }
+    else
+    {
+        return @"100元卡";
+    }
+}
+
 #pragma mark -
 
 - (void) btnNextStepClick:(id)sender
 {
+    TSViewOrderController *ctrl = [[TSViewOrderController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:ctrl animated:YES];
+    [ctrl release];
+}
+
+#pragma mark - event for toolbar buttons
+
+- (void) btnCloseKeyBoardClick:(id)sender
+{
+    [tmp_text_view resignFirstResponder];
     
+    tmp_text_view.inputView = nil;
+    tmp_text_view.inputAccessoryView = nil;
+    [tmp_text_view removeFromSuperview];
+    tmp_text_view = nil;
+    
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+}
+
+- (void) btnSubmitClick:(id)sender
+{
+    [self btnCloseKeyBoardClick:nil];
 }
 
 

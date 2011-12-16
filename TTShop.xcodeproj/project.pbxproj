@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		620FE0C4149AE843007E5194 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 620FE0C3149AE843007E5194 /* EGORefreshTableHeaderView.m */; };
 		6248A2FC14999B87000B1DA7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6248A2FB14999B87000B1DA7 /* AddressBook.framework */; };
 		6248A2FE14999B8B000B1DA7 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6248A2FD14999B8B000B1DA7 /* AddressBookUI.framework */; };
 		6248A3011499C19C000B1DA7 /* TSGameChargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6248A3001499C19C000B1DA7 /* TSGameChargeController.m */; };
@@ -60,6 +61,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		620FE0C2149AE843007E5194 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		620FE0C3149AE843007E5194 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		6248A2FB14999B87000B1DA7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		6248A2FD14999B8B000B1DA7 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		6248A2FF1499C19C000B1DA7 /* TSGameChargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGameChargeController.h; sourceTree = "<group>"; };
@@ -257,6 +260,8 @@
 		B0F408C014890BF500B62B43 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				620FE0C2149AE843007E5194 /* EGORefreshTableHeaderView.h */,
+				620FE0C3149AE843007E5194 /* EGORefreshTableHeaderView.m */,
 				B0F408C314890CD800B62B43 /* STEventDispatcher.h */,
 				B0F408C414890CD800B62B43 /* STEventDispatcher.m */,
 				B0F408C214890C1A00B62B43 /* Net */,
@@ -495,6 +500,7 @@
 				6248A3041499D661000B1DA7 /* TSMobileChargeConfirmController.m in Sources */,
 				6248A3071499DC8A000B1DA7 /* TSViewOrderController.m in Sources */,
 				6248A30A1499DF41000B1DA7 /* TSOrderPropertyController.m in Sources */,
+				620FE0C4149AE843007E5194 /* EGORefreshTableHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

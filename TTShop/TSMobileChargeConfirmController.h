@@ -17,9 +17,9 @@
 @property (nonatomic, retain) UIToolbar *tb_for_picker;
 @property (nonatomic, retain) UIPickerView *pv_picker;
 
-- (void) btnCloseKeyBoardClick:(id)sender;
-
 - (void) btnNextStepClick:(id)sender;
+
+- (void) btnCloseKeyBoardClick:(id)sender;
 
 - (void) btnSubmitClick:(id)sender;
 

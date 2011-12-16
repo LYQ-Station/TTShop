@@ -57,6 +57,9 @@ static NSArray *types = nil;
 
     self.title = @"手机充值确认";
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.scrollEnabled = NO;
+    
     UIBarButtonItem *btn_next_step = [[UIBarButtonItem alloc] initWithTitle:@"下一步"
                                                                       style:UIBarButtonItemStyleDone
                                                                      target:self
@@ -64,6 +67,7 @@ static NSArray *types = nil;
     self.navigationItem.rightBarButtonItem = btn_next_step;
     [btn_next_step release];
     
+        //create data picker
     CGRect tmp_frm = [UIScreen mainScreen].bounds;
     tmp_frm.size.height = 216.0f;
     pv_picker = [[UIPickerView alloc] initWithFrame:tmp_frm];
@@ -102,6 +106,9 @@ static NSArray *types = nil;
     self.navigationItem.rightBarButtonItem = nil;
     self.tb_for_picker = nil;
     self.pv_picker = nil;
+    
+    [tmp_text_view release];
+    tmp_text_view = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
