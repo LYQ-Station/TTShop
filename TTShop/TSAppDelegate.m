@@ -7,6 +7,7 @@
 //
 
 #import "TSAppDelegate.h"
+#import "STAlertView.h"
 
 
 @implementation TSAppDelegate
@@ -18,21 +19,30 @@
 {
     [_window release];
     [_tabBarController release];
+    
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-//    // Override point for customization after application launch.
-//    UIViewController *viewController1 = [[[TSFirstViewController alloc] initWithNibName:nil bundle:nil] autorelease];
-//    UIViewController *viewController2 = [[[TSSecondViewController alloc] initWithNibName:@"TSSecondViewController" bundle:nil] autorelease];
-//    self.tabBarController = [[[UITabBarController alloc] init] autorelease];
-//    self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];
-//    self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+    
+    [STAlertView showAtBottom:@"网络的情况还不错，可以继续访问。"];
+        
+//    STURLRequest *req = [[STURLRequest alloc] initWithURLString:@"http://192.168.0.108/txt.txt"];
+//    STURLLoader *loader = [[STURLLoader alloc] initWithURLRequest:req];
+//    [loader addEventListener:STLOADER_COMPLETE target:self action:@selector(show:)];
+//    [loader load];
+//    [req release];
+    
     return YES;
 }
+
+//- (void) show:(NSNotification *)notify
+//{
+//    STURLLoader *loader = (STURLLoader *)notify.object;
+//    NSLog(@"%@", [loader.getJSONData objectForKey:@"success"]);
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

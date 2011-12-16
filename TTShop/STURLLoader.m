@@ -2,11 +2,12 @@
 //  STURLLoader.m
 //  TTShop
 //
-//  Created by zhangyj on 11-12-2.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Steven Li on 12/1/11.
+//  Copyright (c) 2011 PlayStation. All rights reserved.
 //
 
 #import "STURLLoader.h"
+#import "JSON.h"
 
 
 @implementation STURLLoader
@@ -61,6 +62,19 @@
 
 #pragma mark -
 
+- (NSString *) getStringData
+{
+    return [[[NSString alloc] initWithData:buffer encoding:NSUTF8StringEncoding] autorelease];
+}
+
+- (id) getJSONData
+{
+    NSString *s = [[[NSString alloc] initWithData:buffer encoding:NSUTF8StringEncoding] autorelease];
+	return [s JSONValue];
+}
+
+#pragma mark -
+
 - (void)connection:(NSURLConnection *)aConn didReceiveData:(NSData *)data
 {
 	[buffer appendData:data];
@@ -68,18 +82,20 @@
 
 - (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
-	
+	[self dispatchEvent:STLOADER_SEND_COMPLETE];
 }
 
 - (void)connection:(NSURLConnection *)aConn didFailWithError:(NSError *)error
 {
-	NSLog(@"%@", error);
+    [self dispatchEvent:STLOADER_FAIL];
+//	NSLog(@"%@", error);
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)aConn
 {
-	NSString *str = [[NSString alloc] initWithData:buffer encoding:NSUTF8StringEncoding];
-	NSLog(@"%@", str);
+    [self dispatchEvent:STLOADER_COMPLETE];
+//	NSString *str = [[NSString alloc] initWithData:buffer encoding:NSUTF8StringEncoding];
+//	NSLog(@"%@", str);
 }
 
 

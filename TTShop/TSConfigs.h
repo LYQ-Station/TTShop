@@ -9,10 +9,12 @@
 #ifndef TTShop_TSConfigs_h
 #define TTShop_TSConfigs_h
 
+#pragma mark -
+
 //当前版本
 #define VERSION_STR                 @"1.0.0"
 
-/*------------------------------- 接口地址 -------------------------------*/
+#pragma mark - 接口地址
 
 //根地址
 #define BASE_URL                    @"http://192.168.0.33:8080"

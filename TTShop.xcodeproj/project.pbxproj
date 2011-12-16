@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		620FE0C4149AE843007E5194 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 620FE0C3149AE843007E5194 /* EGORefreshTableHeaderView.m */; };
 		620FE0C9149B16E8007E5194 /* TSPaymentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 620FE0C8149B16E8007E5194 /* TSPaymentController.m */; };
+		620FE0D0149B2CED007E5194 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 620FE0CD149B2CED007E5194 /* NSObject+SBJSON.m */; };
+		620FE0D1149B2CED007E5194 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 620FE0CF149B2CED007E5194 /* NSString+SBJSON.m */; };
+		620FE0D4149B30D1007E5194 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 620FE0D3149B30D1007E5194 /* SBJSON.m */; };
+		620FE0D7149B32B6007E5194 /* STAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 620FE0D6149B32B5007E5194 /* STAlertView.m */; };
 		6248A2FC14999B87000B1DA7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6248A2FB14999B87000B1DA7 /* AddressBook.framework */; };
 		6248A2FE14999B8B000B1DA7 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6248A2FD14999B8B000B1DA7 /* AddressBookUI.framework */; };
 		6248A3011499C19C000B1DA7 /* TSGameChargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6248A3001499C19C000B1DA7 /* TSGameChargeController.m */; };
@@ -67,6 +71,15 @@
 		620FE0C5149B125F007E5194 /* TSConfigs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSConfigs.h; sourceTree = "<group>"; };
 		620FE0C7149B16E8007E5194 /* TSPaymentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPaymentController.h; sourceTree = "<group>"; };
 		620FE0C8149B16E8007E5194 /* TSPaymentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPaymentController.m; sourceTree = "<group>"; };
+		620FE0CB149B2CED007E5194 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		620FE0CC149B2CED007E5194 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		620FE0CD149B2CED007E5194 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		620FE0CE149B2CED007E5194 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		620FE0CF149B2CED007E5194 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		620FE0D2149B30D1007E5194 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		620FE0D3149B30D1007E5194 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		620FE0D5149B32B5007E5194 /* STAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlertView.h; sourceTree = "<group>"; };
+		620FE0D6149B32B5007E5194 /* STAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlertView.m; sourceTree = "<group>"; };
 		6248A2FB14999B87000B1DA7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		6248A2FD14999B8B000B1DA7 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		6248A2FF1499C19C000B1DA7 /* TSGameChargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGameChargeController.h; sourceTree = "<group>"; };
@@ -169,6 +182,20 @@
 				620FE0C8149B16E8007E5194 /* TSPaymentController.m */,
 			);
 			name = Payment;
+			sourceTree = "<group>";
+		};
+		620FE0CA149B2CC3007E5194 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				620FE0CB149B2CED007E5194 /* JSON.h */,
+				620FE0D2149B30D1007E5194 /* SBJSON.h */,
+				620FE0D3149B30D1007E5194 /* SBJSON.m */,
+				620FE0CC149B2CED007E5194 /* NSObject+SBJSON.h */,
+				620FE0CD149B2CED007E5194 /* NSObject+SBJSON.m */,
+				620FE0CE149B2CED007E5194 /* NSString+SBJSON.h */,
+				620FE0CF149B2CED007E5194 /* NSString+SBJSON.m */,
+			);
+			name = JSON;
 			sourceTree = "<group>";
 		};
 		6248A30B1499F6FA000B1DA7 /* tabbar_icon */ = {
@@ -278,7 +305,10 @@
 				620FE0C3149AE843007E5194 /* EGORefreshTableHeaderView.m */,
 				B0F408C314890CD800B62B43 /* STEventDispatcher.h */,
 				B0F408C414890CD800B62B43 /* STEventDispatcher.m */,
+				620FE0CA149B2CC3007E5194 /* JSON */,
 				B0F408C214890C1A00B62B43 /* Net */,
+				620FE0D5149B32B5007E5194 /* STAlertView.h */,
+				620FE0D6149B32B5007E5194 /* STAlertView.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -517,6 +547,10 @@
 				6248A30A1499DF41000B1DA7 /* TSOrderPropertyController.m in Sources */,
 				620FE0C4149AE843007E5194 /* EGORefreshTableHeaderView.m in Sources */,
 				620FE0C9149B16E8007E5194 /* TSPaymentController.m in Sources */,
+				620FE0D0149B2CED007E5194 /* NSObject+SBJSON.m in Sources */,
+				620FE0D1149B2CED007E5194 /* NSString+SBJSON.m in Sources */,
+				620FE0D4149B30D1007E5194 /* SBJSON.m in Sources */,
+				620FE0D7149B32B6007E5194 /* STAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

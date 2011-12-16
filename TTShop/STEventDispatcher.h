@@ -2,8 +2,8 @@
 //  TSEventDispatcher.h
 //  TTShop
 //
-//  Created by zhangyj on 11-12-2.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Steven Li on 12/1/11.
+//  Copyright (c) 2011 PlayStation. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -20,6 +20,8 @@
 - (void) removeEventListener:(NSString *)eventName target:(id)target;
 
 - (void) destoryEventListeners:(id)obServer;
+
+- (void) dispatchEvent:(NSString *)eventString;
 
 
 @end
