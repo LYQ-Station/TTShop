@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		620FE0C4149AE843007E5194 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 620FE0C3149AE843007E5194 /* EGORefreshTableHeaderView.m */; };
+		620FE0C9149B16E8007E5194 /* TSPaymentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 620FE0C8149B16E8007E5194 /* TSPaymentController.m */; };
 		6248A2FC14999B87000B1DA7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6248A2FB14999B87000B1DA7 /* AddressBook.framework */; };
 		6248A2FE14999B8B000B1DA7 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6248A2FD14999B8B000B1DA7 /* AddressBookUI.framework */; };
 		6248A3011499C19C000B1DA7 /* TSGameChargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6248A3001499C19C000B1DA7 /* TSGameChargeController.m */; };
@@ -63,6 +64,9 @@
 /* Begin PBXFileReference section */
 		620FE0C2149AE843007E5194 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		620FE0C3149AE843007E5194 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		620FE0C5149B125F007E5194 /* TSConfigs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSConfigs.h; sourceTree = "<group>"; };
+		620FE0C7149B16E8007E5194 /* TSPaymentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPaymentController.h; sourceTree = "<group>"; };
+		620FE0C8149B16E8007E5194 /* TSPaymentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPaymentController.m; sourceTree = "<group>"; };
 		6248A2FB14999B87000B1DA7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		6248A2FD14999B8B000B1DA7 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		6248A2FF1499C19C000B1DA7 /* TSGameChargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGameChargeController.h; sourceTree = "<group>"; };
@@ -158,6 +162,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		620FE0C6149B16A8007E5194 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				620FE0C7149B16E8007E5194 /* TSPaymentController.h */,
+				620FE0C8149B16E8007E5194 /* TSPaymentController.m */,
+			);
+			name = Payment;
+			sourceTree = "<group>";
+		};
 		6248A30B1499F6FA000B1DA7 /* tabbar_icon */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +223,7 @@
 				B0F408D91489235E00B62B43 /* Classes */,
 				B0F408CC1489153E00B62B43 /* Resources */,
 				B0F408C014890BF500B62B43 /* Common */,
+				620FE0C5149B125F007E5194 /* TSConfigs.h */,
 				B02B025C1487BBF000B5F048 /* TSAppDelegate.h */,
 				B02B025D1487BBF000B5F048 /* TSAppDelegate.m */,
 				B02B02541487BBF000B5F048 /* Supporting Files */,
@@ -317,6 +331,7 @@
 		B0F408D91489235E00B62B43 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				620FE0C6149B16A8007E5194 /* Payment */,
 				B0616A5A1495035600FF111B /* VertifyPhone */,
 				B0F408DE1489246200B62B43 /* Apps */,
 				B0F408DF148924B700B62B43 /* TradeRecords */,
@@ -501,6 +516,7 @@
 				6248A3071499DC8A000B1DA7 /* TSViewOrderController.m in Sources */,
 				6248A30A1499DF41000B1DA7 /* TSOrderPropertyController.m in Sources */,
 				620FE0C4149AE843007E5194 /* EGORefreshTableHeaderView.m in Sources */,
+				620FE0C9149B16E8007E5194 /* TSPaymentController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

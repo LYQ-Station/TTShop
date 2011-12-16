@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TSViewOrderController.h"
 #import "TSOrderPropertyController.h"
+#import "TSPaymentController.h"
 
 
 @implementation TSViewOrderController
@@ -132,7 +133,9 @@
 {
     if (1 == indexPath.section)
     {
-        NSLog(@"ffff");
+        TSPaymentController *ctrl = [[TSPaymentController alloc] initWithNibName:nil bundle:nil];
+        [self presentModalViewController:ctrl animated:YES];
+        [ctrl release];
     }
 }
 
