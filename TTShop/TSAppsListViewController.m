@@ -108,7 +108,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -133,14 +133,32 @@
     {
         case 0:
             cell.textLabel.text = @"游戏点卡";
+            cell.imageView.image = [UIImage imageNamed:@"app_gamem"];
             break;
             
         case 1:
             cell.textLabel.text = @"手机冲值";
+            cell.imageView.image = [UIImage imageNamed:@"app_phonem"];
             break;
         
         case 2:
             cell.textLabel.text = @"转账汇款";
+            cell.imageView.image = [UIImage imageNamed:@"app_bank_service"];
+            break;
+            
+        case 3:
+            cell.textLabel.text = @"游戏点卡";
+            cell.imageView.image = [UIImage imageNamed:@"app_firem"];
+            break;
+            
+        case 4:
+            cell.textLabel.text = @"手机冲值";
+            cell.imageView.image = [UIImage imageNamed:@"app_waterm"];
+            break;
+            
+        case 5:
+            cell.textLabel.text = @"转账汇款";
+            cell.imageView.image = [UIImage imageNamed:@"app_elem"];
             break;
     }
     

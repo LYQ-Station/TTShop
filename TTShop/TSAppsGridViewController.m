@@ -98,64 +98,40 @@
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
 	btn.titleLabel.text = @"游戏充值";
-	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
+	[btn setImage:[UIImage imageNamed:@"app_gamem"] forState:UIControlStateNormal];
 	[btn addTarget:self action:@selector(btnGameChargeClick:) forControlEvents:UIControlEventTouchUpInside];
 	[self addButton:btn];
 	[btn release];
     
     btn = [UIButton buttonWithType:UIButtonTypeCustom];
 	btn.titleLabel.text = @"手机充值";
-	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
+	[btn setImage:[UIImage imageNamed:@"app_phonem"] forState:UIControlStateNormal];
 	[btn addTarget:self action:@selector(btnMobileChargeClick:) forControlEvents:UIControlEventTouchUpInside];
 	[self addButton:btn];
 	[btn release];
     
     btn = [UIButton buttonWithType:UIButtonTypeCustom];
 	btn.titleLabel.text = @"转帐汇款";
-	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
+	[btn setImage:[UIImage imageNamed:@"app_bank_service"] forState:UIControlStateNormal];
 	[btn addTarget:self action:@selector(btnBankServiceClick:) forControlEvents:UIControlEventTouchUpInside];
 	[self addButton:btn];
 	[btn release];
     
     btn = [UIButton buttonWithType:UIButtonTypeCustom];
 	btn.titleLabel.text = @"我的测试";
-	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
+	[btn setImage:[UIImage imageNamed:@"app_firem"] forState:UIControlStateNormal];
 	[self addButton:btn];
 	[btn release];
     
     btn = [UIButton buttonWithType:UIButtonTypeCustom];
 	btn.titleLabel.text = @"我的测试";
-	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
+	[btn setImage:[UIImage imageNamed:@"app_waterm"] forState:UIControlStateNormal];
 	[self addButton:btn];
 	[btn release];
     
     btn = [UIButton buttonWithType:UIButtonTypeCustom];
 	btn.titleLabel.text = @"我的测试";
-	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
-	[self addButton:btn];
-	[btn release];
-    
-    btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	btn.titleLabel.text = @"我的测试";
-	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
-	[self addButton:btn];
-	[btn release];
-    
-    btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	btn.titleLabel.text = @"我的测试";
-	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
-	[self addButton:btn];
-	[btn release];
-    
-    btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	btn.titleLabel.text = @"我的测试";
-	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
-	[self addButton:btn];
-	[btn release];
-    
-    btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	btn.titleLabel.text = @"我的测试";
-	[btn setImage:[UIImage imageNamed:@"icon140"] forState:UIControlStateNormal];
+	[btn setImage:[UIImage imageNamed:@"app_elem"] forState:UIControlStateNormal];
 	[self addButton:btn];
 	[btn release];
 }

@@ -121,14 +121,17 @@
         {
             case 0:
                 cell.textLabel.text = @"设置";
+                cell.imageView.image = [UIImage imageNamed:@"more_cell_setting"];
                 break;
                 
             case 1:
                 cell.textLabel.text = @"分享";
+                cell.imageView.image = [UIImage imageNamed:@"more_cell_share"];
                 break;
                 
             case 2:
                 cell.textLabel.text = @"反馈";
+                cell.imageView.image = [UIImage imageNamed:@"more_cell_feedback"];
                 break;
         }
     }
@@ -138,17 +141,19 @@
         {
             case 0:
                 cell.textLabel.text = @"帮助";
+                cell.imageView.image = [UIImage imageNamed:@"more_cell_help"];
                 break;
                 
             case 1:
                 cell.textLabel.text = @"关于";
+                cell.imageView.image = [UIImage imageNamed:@"more_cell_update"];
                 break;
         }
     }
     else if (2 == indexPath.section)
     {
         cell.textLabel.text = @"检测更新";
-        cell.imageView.image = [UIImage imageNamed:@"app_list"];
+        cell.imageView.image = [UIImage imageNamed:@"more_cell_update"];
     }
     
     return cell;

@@ -111,7 +111,12 @@
     
     if (1 == indexPath.section)
     {
+        cell.textLabel.textColor = [UIColor whiteColor];
         cell.textLabel.text = @"立即充值";
+        cell.backgroundColor = [UIColor clearColor];
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setImage:[UIImage imageNamed:@"btn_pay"] forState:UIControlStateNormal];
+        cell.backgroundView = btn;
     }
     
     return cell;

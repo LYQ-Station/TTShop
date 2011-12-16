@@ -192,9 +192,11 @@ static UITextView *tmp_text_view = nil;
             
             tf_phone_no = tf;
             
-            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+//            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
             
-            UIButton *btn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn.frame = CGRectMake(0, 0, 30, 30);
+            [btn setImage:[UIImage imageNamed:@"btn_conp"] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(btnContactClick:) forControlEvents:UIControlEventTouchUpInside];
             cell.accessoryView = btn;
             
