@@ -10,14 +10,18 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import "TSHistoryPhoneController.h"
+#import "TSGameChargeModel.h"
+
 
 @interface TSGameChargeController : UITableViewController <TSHistoryPhoneDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 {
-    UITextField                        *tf_phone_no;
-    TSHistoryPhoneController           *tab_ctrl_inner;
+    UITextField                     *tf_phone_no;
+    TSHistoryPhoneController        *tab_ctrl_inner;
     
-    UIToolbar           *tb_for_picker;
-    UIPickerView        *pv_picker;
+    UIToolbar                       *tb_for_picker;
+    UIPickerView                    *pv_picker;
+    
+    TSGameChargeModel               *model;
 }
 
 @property (nonatomic, retain) TSHistoryPhoneController *tab_ctrl_inner;
@@ -31,5 +35,9 @@
 - (void) btnCloseKeyBoardClick:(id)sender;
 
 - (void) btnSubmitClick:(id)sender;
+
+#pragma mrak -
+
+- (void) loadData;
 
 @end

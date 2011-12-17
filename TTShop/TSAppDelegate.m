@@ -7,7 +7,6 @@
 //
 
 #import "TSAppDelegate.h"
-#import "STAlertView.h"
 
 
 @implementation TSAppDelegate
@@ -27,7 +26,7 @@
 {
     [self.window makeKeyAndVisible];
     
-    [STAlertView showAtBottom:@"网络的情况还不错，可以继续访问。"];
+//    [STAlertView showAtBottom:@"网络的情况还不错，可以继续访问。"];
         
 //    STURLRequest *req = [[STURLRequest alloc] initWithURLString:@"http://192.168.0.108/txt.txt"];
 //    STURLLoader *loader = [[STURLLoader alloc] initWithURLRequest:req];

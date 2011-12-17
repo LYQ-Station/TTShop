@@ -16,6 +16,11 @@
 #define STLOADER_COMPLETE			@"STLOADER_COMPLETE"
 #define STLOADER_SEND_COMPLETE      @"STLOADER_SEND_COMPLETE"
 
+typedef struct _st_bind_connection
+{
+	id		loader;
+	id		obj;
+} STBindConnection;
 
 @interface STURLLoader : STEventDispatcher
 {
@@ -29,6 +34,9 @@
 @property (nonatomic, readonly) NSMutableData *buffer;
 @property (nonatomic, assign)	NSTimeInterval timeout_interval;
 
++ (void) bindLoader:(id)loader withDelegate:(id)delegate;
+
++ (void) releaseBindedLoaderForDelegate:(id)delegate;
 
 - (id) initWithURLRequest:(STURLRequest *)request;
 

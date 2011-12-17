@@ -10,6 +10,7 @@
 #import "TSGameChargeController.h"
 #import "TSHistoryPhoneController.h"
 #import "TSViewOrderController.h"
+#import "STAlertView.h"
 
 
 static UITextView *tmp_text_view = nil;
@@ -94,6 +95,8 @@ static UITextView *tmp_text_view = nil;
     [split release];
     
     tb_for_picker.items = items;
+    
+    [self loadData];
 }
 
 - (void)viewDidUnload
@@ -183,7 +186,8 @@ static UITextView *tmp_text_view = nil;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.textLabel.text = @"手机号码：";
             
-            UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(88.0f, 12.0f, 188.0f, 26.0f)];
+            UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(88.0f, 10.0f, 183.0f, 26.0f)];
+            tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
             tf.font = [UIFont systemFontOfSize:14.0f];
             tf.placeholder = @"请输入手机号码";
             tf.keyboardType = UIKeyboardTypeNumberPad;
@@ -192,10 +196,8 @@ static UITextView *tmp_text_view = nil;
             
             tf_phone_no = tf;
             
-//            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-            
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            btn.frame = CGRectMake(0, 0, 30, 30);
+            btn.frame = CGRectMake(0, 0, 54, 54);
             [btn setImage:[UIImage imageNamed:@"btn_conp"] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(btnContactClick:) forControlEvents:UIControlEventTouchUpInside];
             cell.accessoryView = btn;
@@ -421,6 +423,30 @@ static UITextView *tmp_text_view = nil;
 - (void) btnSubmitClick:(id)sender
 {
     [self btnCloseKeyBoardClick:nil];
+}
+
+#pragma mark - data opearte
+
+- (void) loadData
+{
+    if (!model)
+    {
+        model = [[TSGameChargeModel alloc] initWithDelegate:self];
+    }
+    
+    [STAlertView showModalWithLoadingInView:self.view text:@"数据载入中⋯⋯"];
+//    [STAlertView showModalInView:self.view text:@"数据载入完毕"];
+    
+    [model loadData];
+}
+
+#pragma mark -
+
+- (void ) onModelLoaded:(TSGameChargeModel *)aModel
+{
+    [STAlertView close];
+    
+    [pv_picker reloadAllComponents];
 }
 
 

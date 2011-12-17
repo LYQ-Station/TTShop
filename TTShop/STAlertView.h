@@ -12,9 +12,9 @@
 
 + (void) showAtBottom:(NSString *)text;
 
-+ (void) showModal:(NSString *)text;
++ (void) showModalInView:(UIView *)view text:(NSString *)text;
 
-+ (void) showModalWithLoading:(NSString *)text;
++ (void) showModalWithLoadingInView:(UIView *)view text:(NSString *)text;
 
 + (void) close;
 

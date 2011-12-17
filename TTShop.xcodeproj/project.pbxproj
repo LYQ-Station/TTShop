@@ -68,11 +68,14 @@
 		B02B025A1487BBF000B5F048 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B02B02591487BBF000B5F048 /* main.m */; };
 		B02B025E1487BBF000B5F048 /* TSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B02B025D1487BBF000B5F048 /* TSAppDelegate.m */; };
 		B02B02791487BC6200B5F048 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B02781487BC6200B5F048 /* QuartzCore.framework */; };
+		B0590D16149C783800226F26 /* TSGameChargeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0590D15149C783800226F26 /* TSGameChargeModel.m */; };
 		B0616A561494FBDC00FF111B /* TSTradeRecords.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0616A551494FBDC00FF111B /* TSTradeRecords.xib */; };
 		B0616A5D1495038D00FF111B /* TSVertifyPhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0616A5C1495038D00FF111B /* TSVertifyPhoneController.m */; };
 		B06BB0F71490FC0C007B388F /* TSTradeRemindCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B06BB0F61490FC0C007B388F /* TSTradeRemindCell.m */; };
 		B0818BB91497949400118CCE /* TSHistoryPhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0818BB81497949400118CCE /* TSHistoryPhoneController.m */; };
 		B0A36461148D0E37000D02B3 /* icon140.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A36460148D0E37000D02B3 /* icon140.png */; };
+		B0BDDA57149B93B6004C9885 /* sub.png in Resources */ = {isa = PBXBuildFile; fileRef = B0BDDA55149B93B6004C9885 /* sub.png */; };
+		B0BDDA58149B93B6004C9885 /* sub@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0BDDA56149B93B6004C9885 /* sub@2x.png */; };
 		B0C1AE7014924F150092A094 /* TSTradeRecordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C1AE6F14924F150092A094 /* TSTradeRecordsController.m */; };
 		B0C4F6CB1496308E009AD7C5 /* TSMobileChargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C4F6CA1496308E009AD7C5 /* TSMobileChargeController.m */; };
 		B0D07E74148BA40D0096CDFC /* TSAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D07E73148BA40D0096CDFC /* TSAboutController.m */; };
@@ -173,6 +176,8 @@
 		B02B025C1487BBF000B5F048 /* TSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSAppDelegate.h; sourceTree = "<group>"; };
 		B02B025D1487BBF000B5F048 /* TSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSAppDelegate.m; sourceTree = "<group>"; };
 		B02B02781487BC6200B5F048 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B0590D14149C783800226F26 /* TSGameChargeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGameChargeModel.h; sourceTree = "<group>"; };
+		B0590D15149C783800226F26 /* TSGameChargeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGameChargeModel.m; sourceTree = "<group>"; };
 		B0616A551494FBDC00FF111B /* TSTradeRecords.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSTradeRecords.xib; sourceTree = "<group>"; };
 		B0616A5B1495038D00FF111B /* TSVertifyPhoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSVertifyPhoneController.h; sourceTree = "<group>"; };
 		B0616A5C1495038D00FF111B /* TSVertifyPhoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSVertifyPhoneController.m; sourceTree = "<group>"; };
@@ -181,6 +186,8 @@
 		B0818BB71497949400118CCE /* TSHistoryPhoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSHistoryPhoneController.h; sourceTree = "<group>"; };
 		B0818BB81497949400118CCE /* TSHistoryPhoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSHistoryPhoneController.m; sourceTree = "<group>"; };
 		B0A36460148D0E37000D02B3 /* icon140.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon140.png; sourceTree = "<group>"; };
+		B0BDDA55149B93B6004C9885 /* sub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sub.png; sourceTree = "<group>"; };
+		B0BDDA56149B93B6004C9885 /* sub@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sub@2x.png"; sourceTree = "<group>"; };
 		B0C1AE6E14924F150092A094 /* TSTradeRecordsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTradeRecordsController.h; sourceTree = "<group>"; };
 		B0C1AE6F14924F150092A094 /* TSTradeRecordsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTradeRecordsController.m; sourceTree = "<group>"; };
 		B0C4F6C91496308E009AD7C5 /* TSMobileChargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMobileChargeController.h; sourceTree = "<group>"; };
@@ -377,6 +384,8 @@
 			children = (
 				6248A2FF1499C19C000B1DA7 /* TSGameChargeController.h */,
 				6248A3001499C19C000B1DA7 /* TSGameChargeController.m */,
+				B0590D14149C783800226F26 /* TSGameChargeModel.h */,
+				B0590D15149C783800226F26 /* TSGameChargeModel.m */,
 			);
 			name = GameCard;
 			sourceTree = "<group>";
@@ -424,6 +433,8 @@
 				6248A30B1499F6FA000B1DA7 /* tabbar_icon */,
 				B0F408E5148928C700B62B43 /* More */,
 				B0A36460148D0E37000D02B3 /* icon140.png */,
+				B0BDDA55149B93B6004C9885 /* sub.png */,
+				B0BDDA56149B93B6004C9885 /* sub@2x.png */,
 				620FE119149B4CCA007E5194 /* btn_conp.png */,
 				620FE11A149B4CCB007E5194 /* btn_conp@2x.png */,
 				620FE115149B4B26007E5194 /* btn_pay.png */,
@@ -639,6 +650,8 @@
 				620FE118149B4B26007E5194 /* btn_pay@2x.png in Resources */,
 				620FE11B149B4CCB007E5194 /* btn_conp.png in Resources */,
 				620FE11C149B4CCB007E5194 /* btn_conp@2x.png in Resources */,
+				B0BDDA57149B93B6004C9885 /* sub.png in Resources */,
+				B0BDDA58149B93B6004C9885 /* sub@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +692,7 @@
 				620FE0D1149B2CED007E5194 /* NSString+SBJSON.m in Sources */,
 				620FE0D4149B30D1007E5194 /* SBJSON.m in Sources */,
 				620FE0D7149B32B6007E5194 /* STAlertView.m in Sources */,
+				B0590D16149C783800226F26 /* TSGameChargeModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

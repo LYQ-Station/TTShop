@@ -10,12 +10,56 @@
 #import "JSON.h"
 
 
+static NSMutableSet			*bind_loaders = nil;
+
 @implementation STURLLoader
 
 @synthesize connction;
 @synthesize buffer;
 @synthesize timeout_interval;
 
+#pragma mark -
+
++ (void) bindLoader:(id)loader withDelegate:(id)delegate
+{	
+	STBindConnection *bc = (STBindConnection *)malloc(sizeof(STBindConnection));
+	bc->loader = loader;
+	bc->obj = delegate;
+	
+	NSValue *val = [NSValue valueWithPointer:bc];
+	
+	if (nil == bind_loaders)
+	{
+		bind_loaders = [[NSMutableSet alloc] init];
+	}
+	
+	[bind_loaders addObject:val];
+}
+
++ (void) releaseBindedLoaderForDelegate:(id)delegate
+{
+	STURLLoader *ld = nil;
+	NSEnumerator *enumerator = [bind_loaders objectEnumerator];
+	STBindConnection *bc = NULL;
+	NSValue *val = nil;
+	
+	while ((val = (NSValue *)[enumerator nextObject]))
+	{
+		bc = [val pointerValue];
+		if (delegate == bc->obj)
+		{
+			ld = (STURLLoader *)bc->loader;
+			[ld cancel];
+			
+			[bind_loaders removeObject:val];
+			free(bc);
+			
+			[ld release];
+			
+			break;
+		}
+	}
+}
 
 #pragma mark -
 

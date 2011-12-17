@@ -121,7 +121,8 @@
     {
         cell.textLabel.text = @"充值号码：";
         
-        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(88.0f, 12.0f, 188.0f, 26.0f)];
+        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(88.0f, 10.0f, 183.0f, 26.0f)];
+        tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         tf.font = [UIFont systemFontOfSize:14.0f];
         tf.placeholder = @"请输入手机号码";
         tf.keyboardType = UIKeyboardTypeNumberPad;
@@ -131,7 +132,7 @@
         tf_phone_no = tf;
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(0, 0, 30, 30);
+        btn.frame = CGRectMake(0, 0, 54, 54);
         [btn setImage:[UIImage imageNamed:@"btn_conp"] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(btnContactClick:) forControlEvents:UIControlEventTouchUpInside];
         cell.accessoryView = btn;
