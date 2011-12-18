@@ -71,7 +71,7 @@
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
     STURLLoader *loader = (STURLLoader *)notify.object;
-    NSDictionary *json = [loader getJSONData];
+//    NSDictionary *json = [loader getJSONData];
     
     [loader removeEventListener:STLOADER_FAIL target:self];
 	[loader removeEventListener:STLOADER_COMPLETE target:self];
