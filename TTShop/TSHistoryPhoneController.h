@@ -10,10 +10,19 @@
 
 @interface TSHistoryPhoneController : UITableViewController
 {
-    id          delegate;
+    id                      delegate;
+    
+    NSMutableArray          *buffer;
 }
 
+@property (nonatomic, readonly) NSMutableArray *buffer;
 @property (nonatomic, assign) id delegate;
+
+- (void) loadDataFromCache;
+
+- (void) saveDataToCache;
+
+- (void) addAPhoneNO:(NSString *)phoneNO contact:(NSString *)name;
 
 @end
 

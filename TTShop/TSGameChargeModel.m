@@ -53,11 +53,11 @@
     is_loading = YES;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
-    NSString *full_url = [NSString stringWithFormat:@"%@%@", BASE_URL, nil];
+    NSString *full_url = [NSString stringWithFormat:@"%@/txt.txt", BASE_URL, nil];
     
     STURLRequest *req = [[STURLRequest alloc] initWithURLString:full_url];
     STURLLoader *loader = [[STURLLoader alloc] initWithURLRequest:req];
-    [loader addEventListener:STLOADER_COMPLETE target:self action:@selector(show:)];
+    [loader addEventListener:STLOADER_COMPLETE target:self action:@selector(onLoadData:)];
     
     [req release];
     [STURLLoader bindLoader:loader withDelegate:self];
@@ -70,12 +70,12 @@
     is_loading = NO;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
-    STURLLoader *loader = (STURLLoader *)notify.object;
+//    STURLLoader *loader = (STURLLoader *)notify.object;
 //    NSDictionary *json = [loader getJSONData];
-    
-    [loader removeEventListener:STLOADER_FAIL target:self];
-	[loader removeEventListener:STLOADER_COMPLETE target:self];
-	[loader release];
+//    
+//    [loader removeEventListener:STLOADER_FAIL target:self];
+//	[loader removeEventListener:STLOADER_COMPLETE target:self];
+//	[loader release];
     
     [STURLLoader releaseBindedLoaderForDelegate:self];
     
@@ -85,7 +85,7 @@
         buffer_games = nil;
     }
     
-    buffer_games = [NSArray arrayWithObjects:@"联众游戏", @"QQ游戏", @"GT赛车", nil];
+    buffer_games = [[NSArray arrayWithObjects:@"联众游戏", @"QQ游戏", @"GT赛车", nil] retain];
     
     if (buffer_values)
     {
@@ -93,11 +93,11 @@
         buffer_values = nil;
     }
     
-    buffer_values = [NSArray arrayWithObjects:
+    buffer_values = [[NSArray arrayWithObjects:
                      [NSArray arrayWithObjects:@"10元", @"100元", nil],
                      [NSArray arrayWithObjects:@"5点", @"99点", @"123点", nil],
                      [NSArray arrayWithObjects:@"100Kala", @"200kala", @"300kala", nil],
-                     nil];
+                     nil] retain];
     
     
         //call delegate method

@@ -17,7 +17,7 @@
 #pragma mark - 接口地址
 
 //根地址
-#define BASE_URL                    @"http://192.168.0.33:8080"
+#define BASE_URL                    @"http://192.168.0.108"
 
 //检测升级接口
 #define URL_CHECK_NEW_VERSION       @"/ttpay/terminal/getEdition.php"
