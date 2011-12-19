@@ -14,6 +14,7 @@
 
 
 static UITextView *tmp_text_view = nil;
+static NSString *contact_name = nil;
 
 @implementation TSGameChargeController
 
@@ -37,6 +38,8 @@ static UITextView *tmp_text_view = nil;
     [pv_picker release];
     
     [tmp_text_view release];
+    
+    [model release];
     
     [super dealloc];
 }
@@ -95,8 +98,6 @@ static UITextView *tmp_text_view = nil;
     [split release];
     
     tb_for_picker.items = items;
-    
-    [self loadData];
 }
 
 - (void)viewDidUnload
@@ -119,6 +120,8 @@ static UITextView *tmp_text_view = nil;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [self loadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -244,13 +247,20 @@ static UITextView *tmp_text_view = nil;
 {
     if (0 == indexPath.section)
     {
-        pv_picker.delegate = self;
-        pv_picker.dataSource = self;
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+//        pv_picker.delegate = self;
+//        pv_picker.dataSource = self;
+        
+        if (!pv_picker.delegate && !pv_picker.dataSource)
+        {
+            return;
+        }
         
         if (!tmp_text_view)
         {
             tmp_text_view = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 0.0f)];
-            [self.tableView addSubview:tmp_text_view];
+            [cell addSubview:tmp_text_view];
             tmp_text_view.inputView = pv_picker;
             tmp_text_view.inputAccessoryView = tb_for_picker;
         }
@@ -296,6 +306,7 @@ static UITextView *tmp_text_view = nil;
                 
                 ctrl.delegate = self;
                 self.tab_ctrl_inner = ctrl;
+                [ctrl release];
                 
                 break;
             }
@@ -329,6 +340,15 @@ static UITextView *tmp_text_view = nil;
         NSString *phone = (NSString *)ABMultiValueCopyValueAtIndex(phones, idx);
         tf_phone_no.text = phone;
         [phone release];
+        
+        if (contact_name)
+        {
+            [contact_name release];
+            contact_name = nil;
+        }
+        
+        contact_name = (NSString *)ABRecordCopyCompositeName(person);
+        [contact_name retain];
     }
     
     [peoplePicker dismissModalViewControllerAnimated:YES];
@@ -364,10 +384,14 @@ static UITextView *tmp_text_view = nil;
 {
     if (0 == component)
     {
-        return 30;
+        return [model.buffer_games count];
+//        return 30;
     }
     
-    return 5;
+    NSArray *arr = [model.buffer_values objectAtIndex:[pickerView selectedRowInComponent:0]];
+    return [arr count];
+//    return [model.buffer_values count];
+//    return 5;
 }
 
 
@@ -389,11 +413,24 @@ static UITextView *tmp_text_view = nil;
 {
     if (0 == component)
     {
-        return @"联众游戏";
+        return [model.buffer_games objectAtIndex:row];
+//        return @"联众游戏";
     }
     else
     {
-        return @"100元卡";
+        NSArray *arr = [model.buffer_values objectAtIndex:[pickerView selectedRowInComponent:0]];
+        
+        return [arr objectAtIndex:row];
+//        return @"100元卡";
+    }
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if (0 == component)
+    {
+        [pickerView reloadComponent:1];
+        [pickerView selectRow:0 inComponent:1 animated:YES];
     }
 }
 
@@ -401,6 +438,28 @@ static UITextView *tmp_text_view = nil;
 
 - (void) btnNextStepClick:(id)sender
 {
+    if (0 == tf_phone_no.text.length)
+    {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:nil
+                                                     message:@"请填写用于接收游戏点卡卡号和卡密手机号码"
+                                                    delegate:nil
+                                           cancelButtonTitle:@"取消"
+                                           otherButtonTitles:nil, nil];
+        [av show];
+        [av release];
+        
+        return;
+    }
+    
+    if (nil == contact_name)
+    {
+       [tab_ctrl_inner addAPhoneNO:tf_phone_no.text contact:@"未知"];
+    }
+    else
+    {
+        [tab_ctrl_inner addAPhoneNO:tf_phone_no.text contact:contact_name];
+    }
+    
     TSViewOrderController *ctrl = [[TSViewOrderController alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:ctrl animated:YES];
     [ctrl release];
@@ -422,6 +481,12 @@ static UITextView *tmp_text_view = nil;
 
 - (void) btnSubmitClick:(id)sender
 {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    cell.textLabel.text = [model.buffer_games objectAtIndex:[pv_picker selectedRowInComponent:0]];
+    
+    NSArray *arr = [model.buffer_values objectAtIndex:[pv_picker selectedRowInComponent:0]];
+    cell.detailTextLabel.text = [arr objectAtIndex:[pv_picker selectedRowInComponent:1]];
+    
     [self btnCloseKeyBoardClick:nil];
 }
 
@@ -446,7 +511,8 @@ static UITextView *tmp_text_view = nil;
 {
     [STAlertView close];
     
-    [pv_picker reloadAllComponents];
+    pv_picker.dataSource = self;
+    pv_picker.delegate = self;
 }
 
 
