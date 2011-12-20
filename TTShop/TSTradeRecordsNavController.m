@@ -7,13 +7,18 @@
 //
 
 #import "TSTradeRecordsNavController.h"
+#import "TSVertifyPhoneController.h"
+#import "TSTradeRecordsController.h"
 
 @implementation TSTradeRecordsNavController
+
+@synthesize is_vertified;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -36,13 +41,21 @@
 }
 */
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (!is_vertified)
+    {
+        TSVertifyPhoneController *ctrl = [[TSVertifyPhoneController alloc] initWithStyle:UITableViewStyleGrouped];
+        ctrl.title = @"交易记录";
+        ctrl.delegate = self;
+        [self pushViewController:ctrl animated:YES];
+        ctrl.navigationItem.prompt = @"验证手机号码";
+        [ctrl release];
+    }
 }
-*/
 
 - (void)viewDidUnload
 {
@@ -55,6 +68,15 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - TSVertifyPhoneController delegate
+
+- (void) tsVertifyPhoneControllerCheckedOK:(TSVertifyPhoneController *)controller
+{
+    TSTradeRecordsController *ctrl = [[TSTradeRecordsController alloc] initWithStyle:UITableViewStylePlain];
+    [self pushViewController:ctrl animated:YES];
+    [ctrl release];
 }
 
 @end

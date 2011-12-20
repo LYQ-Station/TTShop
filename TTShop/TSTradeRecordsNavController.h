@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TSVertifyPhoneController.h"
 
-@interface TSTradeRecordsNavController : UIViewController
+@interface TSTradeRecordsNavController : UINavigationController <TSVertifyPhoneControllerDelegate>
+{
+        //标志是否验证过手机
+    BOOL                is_vertified;
+}
+
+@property (nonatomic, assign) BOOL is_vertified;
 
 @end
