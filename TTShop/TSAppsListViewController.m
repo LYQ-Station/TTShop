@@ -173,15 +173,15 @@
 {
     UIViewController *ctrl = nil;
     
-    if (0 == indexPath.section)
+    if (0 == indexPath.row)
     {
         ctrl = [[TSGameChargeController alloc] initWithStyle:UITableViewStyleGrouped];
     }
-    else if (1 == indexPath.section)
+    else if (1 == indexPath.row)
     {
         ctrl = [[TSMobileChargeController alloc] initWithStyle:UITableViewStyleGrouped];
     }
-    else if (2 == indexPath.section)
+    else if (2 == indexPath.row)
     {
         UIAlertView *av = [[UIAlertView alloc] initWithTitle:nil
                                                      message:@"暂时未开通撒！"

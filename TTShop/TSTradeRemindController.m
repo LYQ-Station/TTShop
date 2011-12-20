@@ -9,6 +9,7 @@
 #import "TSTradeRemindController.h"
 #import "TSSysNoticeController.h"
 #import "TSTradeRemindCell.h"
+#import "TSTradeRemindModel.h"
 #import "EGORefreshTableHeaderView.h"
 
 
@@ -31,6 +32,8 @@
     
     [refresh_view_h release];
     [refresh_view_b release];
+    
+    [model release];
     
     [super dealloc];
 }
@@ -224,6 +227,16 @@
     TSSysNoticeController *ctrl = [[TSSysNoticeController alloc] initWithStyle:UITableViewStylePlain];
     [self.navigationController pushViewController:ctrl animated:NO];
     [ctrl release];
+}
+
+- (void) loadData
+{
+    if (!model)
+    {
+        model = [[TSTradeRemindModel alloc] initWithDelegate:self];
+    }
+    
+    [model fetchNewData];
 }
 
 @end

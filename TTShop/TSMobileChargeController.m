@@ -11,6 +11,8 @@
 #import "TSHistoryPhoneController.h"
 #import "TSMobileChargeConfirmController.h"
 
+static NSString *contact_name = nil;
+static NSString *contact_phone = nil;
 
 @implementation TSMobileChargeController
 
@@ -19,7 +21,8 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -211,6 +214,7 @@
                 
                 ctrl.delegate = self;
                 self.tab_ctrl_inner = ctrl;
+                [ctrl release];
                 
                 break;
             }
@@ -244,6 +248,23 @@
         NSString *phone = (NSString *)ABMultiValueCopyValueAtIndex(phones, idx);
         tf_phone_no.text = phone;
         [phone release];
+        
+        if (contact_name)
+        {
+            [contact_name release];
+            contact_name = nil;
+        }
+        
+        contact_name = (NSString *)ABRecordCopyCompositeName(person);
+        [contact_name retain];
+        
+        if (contact_phone)
+        {
+            [contact_phone release];
+            contact_phone = nil;
+        }
+        
+        contact_phone = [[NSString alloc] initWithString:phone];
     }
     
     [peoplePicker dismissModalViewControllerAnimated:YES];
@@ -265,6 +286,7 @@
     if (tf_phone_no)
     {
         tf_phone_no.text = cell.detailTextLabel.text;
+        [tf_phone_no resignFirstResponder];
     }
 }
 
@@ -272,6 +294,29 @@
 
 - (void) btnNextStepClick:(id)sender
 {
+    if (0 == tf_phone_no.text.length)
+    {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:nil
+                                                     message:@"请填写接受充值的手机号码"
+                                                    delegate:nil
+                                           cancelButtonTitle:@"取消"
+                                           otherButtonTitles:nil, nil];
+        [av show];
+        [av release];
+        
+        return;
+    }
+    
+    if (![tf_phone_no.text isEqualToString:contact_phone])
+    {
+        [tab_ctrl_inner addAPhoneNO:tf_phone_no.text contact:@"未知"];
+    }
+    else
+    {
+        [tab_ctrl_inner addAPhoneNO:tf_phone_no.text contact:contact_name];
+    }
+    
+    
     TSMobileChargeConfirmController *ctrl = [[TSMobileChargeConfirmController alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:ctrl animated:YES];
     [ctrl release];

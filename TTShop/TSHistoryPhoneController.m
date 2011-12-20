@@ -243,6 +243,14 @@ static NSString *cache_file_name = @"history_phone.cache";
 {
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:phoneNO, @"phoneNO", name, @"name", nil];
     
+    for (NSDictionary *d in buffer)
+    {
+        if ([phoneNO isEqualToString:[d objectForKey:@"phoneNO"]])
+        {
+            return;
+        }
+    }
+    
     [buffer insertObject:dic atIndex:0];
     
     [self.tableView reloadData];

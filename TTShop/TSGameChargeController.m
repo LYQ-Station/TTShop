@@ -15,6 +15,7 @@
 
 static UITextView *tmp_text_view = nil;
 static NSString *contact_name = nil;
+static NSString *contact_phone = nil;
 
 @implementation TSGameChargeController
 
@@ -349,6 +350,14 @@ static NSString *contact_name = nil;
         
         contact_name = (NSString *)ABRecordCopyCompositeName(person);
         [contact_name retain];
+        
+        if (contact_phone)
+        {
+            [contact_phone release];
+            contact_phone = nil;
+        }
+        
+        contact_phone = [[NSString alloc] initWithString:phone];
     }
     
     [peoplePicker dismissModalViewControllerAnimated:YES];
@@ -451,7 +460,7 @@ static NSString *contact_name = nil;
         return;
     }
     
-    if (nil == contact_name)
+    if (![tf_phone_no.text isEqualToString:contact_phone])
     {
        [tab_ctrl_inner addAPhoneNO:tf_phone_no.text contact:@"未知"];
     }

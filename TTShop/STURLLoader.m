@@ -21,7 +21,9 @@ static NSMutableSet			*bind_loaders = nil;
 #pragma mark -
 
 + (void) bindLoader:(id)loader withDelegate:(id)delegate
-{	
+{
+    [loader retain];
+    
 	STBindConnection *bc = (STBindConnection *)malloc(sizeof(STBindConnection));
 	bc->loader = loader;
 	bc->obj = delegate;

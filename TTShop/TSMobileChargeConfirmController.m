@@ -58,7 +58,7 @@ static NSArray *types = nil;
     self.title = @"手机充值确认";
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.scrollEnabled = NO;
+//    self.tableView.scrollEnabled = NO;
     
     UIBarButtonItem *btn_next_step = [[UIBarButtonItem alloc] initWithTitle:@"下一步"
                                                                       style:UIBarButtonItemStyleDone
@@ -223,6 +223,8 @@ static NSArray *types = nil;
 {
     if (1 == indexPath.section)
     {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
         pv_picker.tag = indexPath.row;
         pv_picker.delegate = self;
         pv_picker.dataSource = self;
@@ -230,7 +232,7 @@ static NSArray *types = nil;
         if (!tmp_text_view)
         {
             tmp_text_view = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 0.0f)];
-            [self.tableView addSubview:tmp_text_view];
+            [cell addSubview:tmp_text_view];
             tmp_text_view.inputView = pv_picker;
             tmp_text_view.inputAccessoryView = tb_for_picker;
         }

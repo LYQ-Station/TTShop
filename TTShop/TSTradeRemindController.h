@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class EGORefreshTableHeaderView;
+@class TSTradeRemindModel;
 
 @interface TSTradeRemindController : UITableViewController
 {
@@ -16,10 +17,14 @@
     
     EGORefreshTableHeaderView	*refresh_view_h;
 	EGORefreshTableHeaderView	*refresh_view_b;
+    
+    TSTradeRemindModel          *model;
 }
 
 @property (nonatomic, retain) UISegmentedControl *sg_switch;
 
 - (IBAction) segmentedControlChange:(id)sender;
+
+- (void) loadData;
 
 @end

@@ -82,4 +82,36 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark -
+
+- (IBAction) btnSendMailClick:(id)sender
+{
+    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:nil
+                                                    delegate:self
+                                           cancelButtonTitle:@"取消"
+                                      destructiveButtonTitle:nil
+                                           otherButtonTitles:@"用邮件程序向天天付发送邮件", nil];
+    
+    [as showInView:self.view];
+}
+
+- (IBAction) btnDialClick:(id)sender
+{
+    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:nil
+                                                    delegate:self
+                                           cancelButtonTitle:@"取消"
+                                      destructiveButtonTitle:nil
+                                           otherButtonTitles:@"拨打天天付客服电话", nil];
+    
+    [as showInView:self.view];
+}
+
+#pragma mark -
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+}
+
+
 @end
