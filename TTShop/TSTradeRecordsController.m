@@ -21,6 +21,7 @@ static NSArray *t_types;
 @synthesize tb_close;
 @synthesize tb_submit;
 @synthesize pv_picker;
+@synthesize is_vertified;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -56,6 +57,9 @@ static NSArray *t_types;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"交易记录";
+    self.navigationItem.prompt = @" ";
 
     CGRect uv_frm = [UIScreen mainScreen].bounds;
     
@@ -65,16 +69,24 @@ static NSArray *t_types;
     sg_type_switch.momentary = YES;
     [sg_type_switch addTarget:self action:@selector(segmentClick:) forControlEvents:UIControlEventValueChanged];
     [self.navigationController.navigationBar addSubview:sg_type_switch];
-    [sg_type_switch release];
     
-    TSVertifyPhoneController *ctrl = [[TSVertifyPhoneController alloc] initWithNibName:nil bundle:nil];
-    [self presentModalViewController:ctrl animated:YES];
-    [ctrl release];
+    sg_switch = sg_type_switch;
+    
+    self.tableView.delegate = nil;
+    self.tableView.dataSource = nil;
+    
+    UIView *empty_v = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 0.0f)];
+    UIBarButtonItem *empty_back_btn = [[UIBarButtonItem alloc] initWithCustomView:empty_v];
+    self.navigationItem.leftBarButtonItem = empty_back_btn;
+    [empty_v release];
+    [empty_back_btn release];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
+    [sg_switch release];
     
     self.tb_close = nil;
     self.tb_submit = nil;
@@ -109,6 +121,15 @@ static NSArray *t_types;
             
             break;
         }
+    }
+    
+    if (!is_vertified)
+    {
+//        TSVertifyPhoneController *ctrl = [[TSVertifyPhoneController alloc] initWithNibName:nil bundle:nil];
+//        [self presentModalViewController:ctrl animated:YES];
+//        [self.navigationController pushViewController:ctrl.topViewController animated:YES];
+//        [self.tableView addSubview:ctrl.topViewController.view];
+//        [ctrl release];
     }
 }
 
@@ -175,16 +196,16 @@ static NSArray *t_types;
 
 - (IBAction) segmentClick:(id)sender
 {
-    UISegmentedControl *sg_switch = (UISegmentedControl *)sender;
+    UISegmentedControl *sg = (UISegmentedControl *)sender;
     
     pv_picker.delegate = self;
     pv_picker.dataSource = self;
-    pv_picker.tag = sg_switch.selectedSegmentIndex;
+    pv_picker.tag = sg.selectedSegmentIndex;
     
     if (!tmp_text_view)
     {
         tmp_text_view = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 0.0f)];
-        [self.tableView addSubview:tmp_text_view];
+        [self.view.window addSubview:tmp_text_view];
         tmp_text_view.inputView = pv_picker;
         tmp_text_view.inputAccessoryView = tb_for_picker;
     }
@@ -204,6 +225,17 @@ static NSArray *t_types;
 
 - (IBAction) btnSubmitClick:(id)sender
 {
+    int idx = [pv_picker selectedRowInComponent:0];
+    
+    if (0 == pv_picker.tag)
+    {
+        [sg_switch setTitle:[b_types objectAtIndex:idx] forSegmentAtIndex:0];
+    }
+    else
+    {
+        [sg_switch setTitle:[t_types objectAtIndex:idx] forSegmentAtIndex:1];
+    }
+    
     [self btnCloseKeyBoardClick:nil];
 }
 

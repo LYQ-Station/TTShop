@@ -61,6 +61,7 @@
 		6248A3211499FAFB000B1DA7 /* app_grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6248A31D1499FAFB000B1DA7 /* app_grid@2x.png */; };
 		6248A3221499FAFB000B1DA7 /* app_list.png in Resources */ = {isa = PBXBuildFile; fileRef = 6248A31E1499FAFB000B1DA7 /* app_list.png */; };
 		6248A3231499FAFB000B1DA7 /* app_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6248A31F1499FAFB000B1DA7 /* app_list@2x.png */; };
+		62A3566714A07A9E004190CF /* TSTradeRecordsNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A3566614A07A9E004190CF /* TSTradeRecordsNavController.m */; };
 		B02B024E1487BBF000B5F048 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B024D1487BBF000B5F048 /* UIKit.framework */; };
 		B02B02501487BBF000B5F048 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B024F1487BBF000B5F048 /* Foundation.framework */; };
 		B02B02521487BBF000B5F048 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B02511487BBF000B5F048 /* CoreGraphics.framework */; };
@@ -165,6 +166,8 @@
 		6248A31D1499FAFB000B1DA7 /* app_grid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_grid@2x.png"; sourceTree = "<group>"; };
 		6248A31E1499FAFB000B1DA7 /* app_list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_list.png; sourceTree = "<group>"; };
 		6248A31F1499FAFB000B1DA7 /* app_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_list@2x.png"; sourceTree = "<group>"; };
+		62A3566514A07A9E004190CF /* TSTradeRecordsNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTradeRecordsNavController.h; sourceTree = "<group>"; };
+		62A3566614A07A9E004190CF /* TSTradeRecordsNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTradeRecordsNavController.m; sourceTree = "<group>"; };
 		B02B02491487BBF000B5F048 /* TTShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B02B024D1487BBF000B5F048 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B02B024F1487BBF000B5F048 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -494,6 +497,8 @@
 			children = (
 				B0C1AE6E14924F150092A094 /* TSTradeRecordsController.h */,
 				B0C1AE6F14924F150092A094 /* TSTradeRecordsController.m */,
+				62A3566514A07A9E004190CF /* TSTradeRecordsNavController.h */,
+				62A3566614A07A9E004190CF /* TSTradeRecordsNavController.m */,
 			);
 			name = TradeRecords;
 			sourceTree = "<group>";
@@ -693,6 +698,7 @@
 				620FE0D4149B30D1007E5194 /* SBJSON.m in Sources */,
 				620FE0D7149B32B6007E5194 /* STAlertView.m in Sources */,
 				B0590D16149C783800226F26 /* TSGameChargeModel.m in Sources */,
+				62A3566714A07A9E004190CF /* TSTradeRecordsNavController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

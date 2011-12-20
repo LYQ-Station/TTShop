@@ -14,14 +14,19 @@
     UIBarButtonItem     *tb_close;
     UIBarButtonItem     *tb_submit;
     UIPickerView        *pv_picker;
+    UISegmentedControl  *sg_switch;
+    
+        //标志是否验证过手机
+    BOOL                is_vertified;
 }
 
 @property (nonatomic, retain) IBOutlet UIToolbar *tb_for_picker;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *tb_close;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *tb_submit;
 @property (nonatomic, retain) IBOutlet UIPickerView *pv_picker;
+@property (nonatomic, assign) BOOL is_vertified;
 
-- (IBAction) segmentClick:(id)sender;
+- (void) segmentClick:(id)sender;
 
 - (IBAction) btnCloseKeyBoardClick:(id)sender;
 
