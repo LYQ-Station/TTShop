@@ -14,16 +14,6 @@
 
 @synthesize is_vertified;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -48,18 +38,22 @@
     
     if (!is_vertified)
     {
-        TSVertifyPhoneController *ctrl = [[TSVertifyPhoneController alloc] initWithStyle:UITableViewStyleGrouped];
-        ctrl.title = @"交易记录";
-        ctrl.delegate = self;
-        [self pushViewController:ctrl animated:YES];
-        ctrl.navigationItem.prompt = @"验证手机号码";
-        [ctrl release];
+        if (0 == self.viewControllers.count)
+        {
+            TSVertifyPhoneController *ctrl = [[TSVertifyPhoneController alloc] initWithStyle:UITableViewStyleGrouped];
+            ctrl.title = @"交易记录";
+            ctrl.delegate = self;
+            [self pushViewController:ctrl animated:YES];
+            ctrl.navigationItem.prompt = @"验证手机号码";
+            [ctrl release];
+        }
     }
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -74,9 +68,22 @@
 
 - (void) tsVertifyPhoneControllerCheckedOK:(TSVertifyPhoneController *)controller
 {
-    TSTradeRecordsController *ctrl = [[TSTradeRecordsController alloc] initWithStyle:UITableViewStylePlain];
+    TSTradeRecordsController *ctrl = [[TSTradeRecordsController alloc] initWithNibName:@"TSTradeRecords" bundle:nil];
     [self pushViewController:ctrl animated:YES];
     [ctrl release];
+}
+
+#pragma mark -
+
+- (NSArray *) popToRootViewControllerAnimated:(BOOL)animated
+{
+    if (is_vertified)
+    {
+        UIViewController *ctrl = [self.viewControllers objectAtIndex:1];
+        return [self popToViewController:ctrl animated:animated];
+    }
+    
+    return [super popToRootViewControllerAnimated:animated];
 }
 
 @end

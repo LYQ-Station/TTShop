@@ -6,12 +6,13 @@
 //  Copyright (c) 2011 PlayStation. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "TSTradeRecordsController.h"
 #import "TSTradeRemindCell.h"
 #import "TSVertifyPhoneController.h"
 
 
-static UITextView *tmp_text_view;
+static UITextView *tmp_text_view = nil;
 static NSArray *b_types;
 static NSArray *t_types;
 
@@ -21,7 +22,6 @@ static NSArray *t_types;
 @synthesize tb_close;
 @synthesize tb_submit;
 @synthesize pv_picker;
-@synthesize is_vertified;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -40,14 +40,23 @@ static NSArray *t_types;
 
 - (void)dealloc
 {
+    [custom_title_view release];
+    
+    [sg_switch release];
+    
     [tb_close release];
     [tb_submit release];
     [tb_for_picker release];
     [pv_picker release];
     
     [tmp_text_view release];
+    tmp_text_view = nil;
+    
     [b_types release];
+    b_types = nil;
+    
     [t_types release];
+    b_types = nil;
     
     [super dealloc];
 }
@@ -68,26 +77,34 @@ static NSArray *t_types;
     sg_type_switch.segmentedControlStyle = UISegmentedControlStyleBar;
     sg_type_switch.momentary = YES;
     [sg_type_switch addTarget:self action:@selector(segmentClick:) forControlEvents:UIControlEventValueChanged];
-    [self.navigationController.navigationBar addSubview:sg_type_switch];
-    
+    self.navigationItem.titleView = sg_type_switch;
     sg_switch = sg_type_switch;
     
-    self.tableView.delegate = nil;
-    self.tableView.dataSource = nil;
+//    self.tableView.delegate = nil;
+//    self.tableView.dataSource = nil;
     
     UIView *empty_v = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 0.0f)];
     UIBarButtonItem *empty_back_btn = [[UIBarButtonItem alloc] initWithCustomView:empty_v];
     self.navigationItem.leftBarButtonItem = empty_back_btn;
     [empty_v release];
     [empty_back_btn release];
+    
+    custom_title_view = [[UILabel alloc] initWithFrame:CGRectMake(119.0f, 5.0f, 82.0f, 27.0f)];
+    custom_title_view.text = @"交易记录";
+    custom_title_view.textColor = [UIColor whiteColor];
+    custom_title_view.textAlignment = UITextAlignmentCenter;
+    custom_title_view.backgroundColor = [UIColor clearColor];
+    custom_title_view.font = [UIFont boldSystemFontOfSize:20.0f];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     
-    [sg_switch release];
+    [custom_title_view release];
+    custom_title_view = nil;
     
+    self.navigationItem.titleView = nil;
     self.tb_close = nil;
     self.tb_submit = nil;
     self.tb_for_picker = nil;
@@ -97,47 +114,34 @@ static NSArray *t_types;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [self.navigationController.navigationBar addSubview:custom_title_view];
+    
+    if (animated)
+    {
+        CABasicAnimation *anni = [CABasicAnimation animationWithKeyPath:@"position"];
+        anni.duration = 0.31f;
+        anni.fromValue = [NSValue valueWithCGPoint:CGPointMake(320.0f, 18.5f)];
+        [custom_title_view.layer addAnimation:anni forKey:@"position"];
+        
+        CABasicAnimation *anni2 = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        anni2.fromValue = [NSNumber numberWithFloat:0.0f];
+        anni2.toValue = [NSNumber numberWithFloat:1.0f];
+        [custom_title_view.layer addAnimation:anni2 forKey:@"opacity"];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    CGRect prompt_frm;
-    for (id v in self.navigationController.navigationBar.subviews)
-    {
-        if ([@"UINavBarPrompt" isEqualToString:NSStringFromClass([v class])])
-        {
-            UIView *vp = (UIView *)v;
-            prompt_frm = vp.frame;
-        }
-        
-        if ([@"UINavigationItemView" isEqualToString:NSStringFromClass([v class])])
-        {
-            UIView *vi = (UIView *)v;
-            CGRect vi_frm = vi.frame;
-            vi_frm.origin.y = prompt_frm.origin.y + 5.0f;
-            vi.frame = vi_frm;
-            
-            break;
-        }
-    }
-    
-    NSLog(@"xxxx");
-    
-    if (!is_vertified)
-    {
-//        TSVertifyPhoneController *ctrl = [[TSVertifyPhoneController alloc] initWithNibName:nil bundle:nil];
-//        [self presentModalViewController:ctrl animated:YES];
-//        [self.navigationController pushViewController:ctrl.topViewController animated:YES];
-//        [self.tableView addSubview:ctrl.topViewController.view];
-//        [ctrl release];
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
+//    [sg_switch removeFromSuperview];
+    [custom_title_view removeFromSuperview];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

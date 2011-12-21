@@ -16,15 +16,13 @@
     UIPickerView        *pv_picker;
     UISegmentedControl  *sg_switch;
     
-        //标志是否验证过手机
-    BOOL                is_vertified;
+    UILabel             *custom_title_view;
 }
 
 @property (nonatomic, retain) IBOutlet UIToolbar *tb_for_picker;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *tb_close;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *tb_submit;
 @property (nonatomic, retain) IBOutlet UIPickerView *pv_picker;
-@property (nonatomic, assign) BOOL is_vertified;
 
 - (void) segmentClick:(id)sender;
 
