@@ -123,6 +123,8 @@ static NSArray *t_types;
         }
     }
     
+    NSLog(@"xxxx");
+    
     if (!is_vertified)
     {
 //        TSVertifyPhoneController *ctrl = [[TSVertifyPhoneController alloc] initWithNibName:nil bundle:nil];
