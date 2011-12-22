@@ -10,7 +10,8 @@
 
 @interface TSVertifyPhoneController : UITableViewController <UITextFieldDelegate>
 {
-    BOOL                is_show_close_btn;
+    BOOL                show_close_btn;
+    BOOL                is_loading;
     
     UITextField         *tf_curr_inputbox;
     UIButton            *mask_btn;
@@ -18,7 +19,7 @@
     id                  delegate;
 }
 
-@property (nonatomic, assign) BOOL is_show_close_btn;
+@property (nonatomic, assign) BOOL show_close_btn;
 @property (nonatomic, readonly) UITextField *tf_curr_inputbox;
 @property (nonatomic, assign) id delegate;
 
@@ -27,6 +28,10 @@
 - (void) btnCloseClick:(id)sender;
 
 - (void) btnSubmitClick:(id)sender;
+
+- (void) doVerify;
+
+- (void) onVerfiy:(NSNotification *)notify;
 
 @end
 

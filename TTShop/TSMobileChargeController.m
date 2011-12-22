@@ -10,6 +10,9 @@
 #import "TSMobileChargeController.h"
 #import "TSHistoryPhoneController.h"
 #import "TSMobileChargeConfirmController.h"
+#import "TSConfigs.h"
+#import "STURLLoader.h"
+#import "STAlertView.h"
 
 static NSString *contact_name = nil;
 static NSString *contact_phone = nil;
@@ -30,6 +33,12 @@ static NSString *contact_phone = nil;
 
 - (void) dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    [mask_btn release];
+    mask_btn = nil;
+    
     [tab_ctrl_inner release];
     
     [super dealloc];
@@ -129,6 +138,7 @@ static NSString *contact_phone = nil;
         tf.font = [UIFont systemFontOfSize:14.0f];
         tf.placeholder = @"请输入手机号码";
         tf.keyboardType = UIKeyboardTypeNumberPad;
+        tf.delegate = self;
         [cell addSubview:tf];
         [tf release];
         
@@ -189,12 +199,9 @@ static NSString *contact_phone = nil;
     if (1 == indexPath.section)
     {
         cell.clipsToBounds = YES;
-//        cell.backgroundColor = [UIColor blueColor];
         
         for (id sv in cell.subviews)
         {
-//            NSLog(@"%@", sv);
-            
             if ([@"UITableViewCellContentView" isEqualToString:NSStringFromClass([sv class])])
             {
                 UIView *tmp_v = (UIView *)sv;
@@ -220,6 +227,31 @@ static NSString *contact_phone = nil;
             }
         }
     }
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (!mask_btn)
+    {
+        mask_btn = [[UIButton alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        mask_btn.backgroundColor = [UIColor whiteColor];
+        mask_btn.alpha = 0.1f;
+        [mask_btn addTarget:self action:@selector(btnCloseKeyboardClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    [self.tableView addSubview:mask_btn];
+    
+    return YES;
+}
+
+#pragma mark close keyboard
+
+- (void) btnCloseKeyboardClick:(id)sender
+{
+    [tf_phone_no resignFirstResponder];
+    [mask_btn removeFromSuperview];
 }
 
 #pragma mark - select contact from AddressBook
@@ -316,8 +348,42 @@ static NSString *contact_phone = nil;
         [tab_ctrl_inner addAPhoneNO:tf_phone_no.text contact:contact_name];
     }
     
+    [self btnCloseKeyboardClick:nil];
+    
+    [self submitPhone];
+}
+
+#pragma mark - submit phone NO.
+
+- (void) submitPhone
+{
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    [STAlertView showModalWithLoadingInView:self.view text:@"正在载入数据..."];
+    
+    NSString *full_url = [NSString stringWithFormat:@"http://www.baidu.com", BASE_URL, nil];
+    
+    STURLRequest *req = [[STURLRequest alloc] initWithURLString:full_url];
+    STURLLoader *loader = [[STURLLoader alloc] initWithURLRequest:req];
+    [loader addEventListener:STLOADER_COMPLETE target:self action:@selector(onSubmitPhone:)];
+    
+    [req release];
+    [STURLLoader bindLoader:loader withDelegate:self];
+    
+    [loader load];
+}
+
+- (void) onSubmitPhone:(NSNotification *)notify
+{
+    self.navigationItem.rightBarButtonItem.enabled = YES;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    [STAlertView close];
     
     TSMobileChargeConfirmController *ctrl = [[TSMobileChargeConfirmController alloc] initWithStyle:UITableViewStyleGrouped];
+    ctrl.phone_info = [NSDictionary dictionaryWithObjectsAndKeys:@"深圳", @"city", @"中国移动", @"vendor", nil];
+    
     [self.navigationController pushViewController:ctrl animated:YES];
     [ctrl release];
 }

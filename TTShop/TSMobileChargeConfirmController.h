@@ -10,12 +10,17 @@
 
 @interface TSMobileChargeConfirmController : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 {
-    UIToolbar           *tb_for_picker;
-    UIPickerView        *pv_picker;
+    UIToolbar               *tb_for_picker;
+    UIPickerView            *pv_picker;
+    
+    NSDictionary            *charge_types;
+    NSDictionary            *phone_info;
 }
 
 @property (nonatomic, retain) UIToolbar *tb_for_picker;
 @property (nonatomic, retain) UIPickerView *pv_picker;
+@property (nonatomic, retain) NSDictionary *charge_types;
+@property (nonatomic, retain) NSDictionary *phone_info;
 
 - (void) btnNextStepClick:(id)sender;
 

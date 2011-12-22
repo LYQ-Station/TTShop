@@ -7,6 +7,8 @@
 //
 
 #import "TSFeedbackController.h"
+#import "TSConfigs.h"
+#import "STURLLoader.h"
 
 
 @implementation TSFeedbackController
@@ -25,7 +27,12 @@
 
 - (void) dealloc
 {
-    self.txt_feedback = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    [STURLLoader releaseBindedLoaderForDelegate:self];
+    
+    [txt_feedback release];
     
     [super dealloc];
 }
@@ -158,18 +165,6 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
-}
-
 - (CGFloat)tableView: (UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (1 == indexPath.row)
@@ -185,6 +180,25 @@
 - (void) btnSendClick:(id)sender
 {
     
+}
+
+#pragma mark - send contents
+
+- (void) send
+{
+    if (is_loading)
+    {
+        return;
+    }
+    
+    is_loading = YES;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+- (void) onSended:(NSNotification *)notify
+{
+    is_loading = NO;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 @end

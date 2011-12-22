@@ -13,7 +13,7 @@
 #import "TSVertifyPhoneController.h"
 #import "EGORefreshTableHeaderView.h"
 
-static UIViewController *ctrl_verify = nil;
+static UITableViewController *ctrl_verify = nil;
 
 @implementation TSTradeRemindController
 
@@ -79,6 +79,9 @@ static UIViewController *ctrl_verify = nil;
 	refresh_view_b.state = EGOOPullRefreshNormalUP;
 	[self.tableView addSubview:refresh_view_b];
 	refresh_view_b.hidden = YES;
+    
+    self.tableView.delegate = nil;
+    self.tableView.dataSource = nil;
 }
 
 - (void)viewDidUnload
@@ -119,6 +122,17 @@ static UIViewController *ctrl_verify = nil;
             ctrl.tableView.frame = self.tableView.frame;
             [self.tableView addSubview:ctrl.tableView];
             ctrl_verify = ctrl;
+            
+                //do anmition
+//            CGPoint og_c = ctrl.tableView.center;
+//            CGPoint new_c = og_c;
+//            new_c.y += 240.0f;
+//            
+//            ctrl.tableView.center = new_c;
+//            
+//            [UIView beginAnimations:nil context:NULL];
+//            ctrl.tableView.center = og_c;
+//            [UIView commitAnimations];
         }
     }
 }
@@ -265,12 +279,18 @@ static UIViewController *ctrl_verify = nil;
 
 - (void) tsVertifyPhoneControllerDidCancel:(TSVertifyPhoneController *)controller
 {
-    [self dismissModalViewControllerAnimated:YES];
+    
 }
 
 - (void) tsVertifyPhoneControllerCheckedOK:(TSVertifyPhoneController *)controller
 {
+    [ctrl_verify.tableView removeFromSuperview];
+    [ctrl_verify release];
+    ctrl_verify = nil;
     
+    self.tableView.scrollEnabled = YES;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
 @end

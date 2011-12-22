@@ -18,6 +18,8 @@ static NSArray *types = nil;
 
 @synthesize tb_for_picker;
 @synthesize pv_picker;
+@synthesize charge_types;
+@synthesize phone_info;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -170,8 +172,8 @@ static NSArray *types = nil;
         }
         else
         {
-            cell.textLabel.text = @"广东";
-            cell.detailTextLabel.text = @"中国移动";
+            cell.textLabel.text = [phone_info objectForKey:@"city"];
+            cell.detailTextLabel.text = [phone_info objectForKey:@"vendor"];
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

@@ -11,16 +11,24 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import "TSHistoryPhoneController.h"
 
-@interface TSMobileChargeController : UITableViewController <TSHistoryPhoneDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate>
+@interface TSMobileChargeController : UITableViewController <TSHistoryPhoneDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate, UITextFieldDelegate>
 {
-    UITextField                        *tf_phone_no;
-    TSHistoryPhoneController           *tab_ctrl_inner;
+    UITextField                         *tf_phone_no;
+    TSHistoryPhoneController            *tab_ctrl_inner;
+    
+    UIButton                            *mask_btn;
 }
 
 @property (nonatomic, retain) TSHistoryPhoneController *tab_ctrl_inner;
 
+- (void) btnCloseKeyboardClick:(id)sender;
+
 - (void) btnContactClick:(id)sender;
 
 - (void) btnNextStepClick:(id)sender;
+
+- (void) submitPhone;
+
+- (void) onSubmitPhone:(NSNotification *)notify;
 
 @end

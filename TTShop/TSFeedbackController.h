@@ -11,10 +11,16 @@
 @interface TSFeedbackController : UITableViewController
 {
     UITextView          *txt_feedback;
+    
+    BOOL                is_loading;
 }
 
 @property (nonatomic, retain) UITextView *txt_feedback;
 
 - (void) btnSendClick:(id)sender;
+
+- (void) send;
+
+- (void) onSended:(NSNotification *)notify;
 
 @end

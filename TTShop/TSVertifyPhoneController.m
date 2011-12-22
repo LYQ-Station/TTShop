@@ -7,10 +7,12 @@
 //
 
 #import "TSVertifyPhoneController.h"
+#import "TSConfigs.h"
+#import "STURLLoader.h"
 
 @implementation TSVertifyPhoneController
 
-@synthesize is_show_close_btn;
+@synthesize show_close_btn;
 @synthesize tf_curr_inputbox;
 @synthesize delegate;
 
@@ -28,6 +30,9 @@
 
 - (void) dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
     [mask_btn release];
     mask_btn = nil;
     
@@ -48,7 +53,7 @@
 {
     [super viewDidLoad];
     
-    if (is_show_close_btn)
+    if (show_close_btn)
     {
         UIBarButtonItem *btn_close = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStyleBordered target:self action:@selector(btnCloseClick:)];
         self.navigationItem.leftBarButtonItem = btn_close;
@@ -164,6 +169,7 @@
         
 //        cell.textLabel.textColor = [UIColor whiteColor];
         cell.textLabel.text = @"开始验证";
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
     }
     
     return cell;
@@ -171,7 +177,29 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    return @"为了保证您的资料隐私，我们需要对您的手机进行验证！";
+    if (1 == section)
+    {
+        return @"为了保证您的资料隐私，我们需要对您的手机进行验证！";
+    }
+    
+    return nil;
+}
+
+#pragma mark - uitableview deleagate
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (1 == indexPath.section)
+    {
+        if (is_loading)
+        {
+            return;
+        }
+        
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        [self doVerify];
+    }
 }
 
 #pragma mark - UITextFieldDelegate
@@ -215,7 +243,52 @@
 
 - (void) btnSubmitClick:(id)sender
 {
-    [self btnCloseKeyboardClick:nil];
+    if (delegate && [delegate respondsToSelector:@selector(tsVertifyPhoneControllerCheckedOK:)])
+    {
+        [delegate performSelector:@selector(tsVertifyPhoneControllerCheckedOK:) withObject:self];
+    }
+}
+
+#pragma mark - model
+
+- (void) doVerify
+{
+    if (is_loading)
+    {
+        return;
+    }
+    
+    is_loading = YES;
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    UITableViewCell *btn_cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    btn_cell.textLabel.text = @"正在验证...";
+    
+    UIActivityIndicatorView *av = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [av startAnimating];
+    btn_cell.accessoryView = av;
+    [av release];
+    
+    NSString *full_url = [NSString stringWithFormat:@"http://www.baidu.com", BASE_URL, nil];
+    
+    STURLRequest *req = [[STURLRequest alloc] initWithURLString:full_url];
+    STURLLoader *loader = [[STURLLoader alloc] initWithURLRequest:req];
+    [loader addEventListener:STLOADER_COMPLETE target:self action:@selector(onVerfiy:)];
+    
+    [req release];
+    [STURLLoader bindLoader:loader withDelegate:self];
+    
+    [loader load];
+}
+
+- (void) onVerfiy:(NSNotification *)notify
+{
+    is_loading = NO;
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    UITableViewCell *btn_cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    btn_cell.textLabel.text = @"开始验证";
+    btn_cell.accessoryView = nil;
     
     if (delegate && [delegate respondsToSelector:@selector(tsVertifyPhoneControllerCheckedOK:)])
     {
