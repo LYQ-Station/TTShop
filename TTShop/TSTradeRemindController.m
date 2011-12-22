@@ -10,12 +10,15 @@
 #import "TSSysNoticeController.h"
 #import "TSTradeRemindCell.h"
 #import "TSTradeRemindModel.h"
+#import "TSVertifyPhoneController.h"
 #import "EGORefreshTableHeaderView.h"
 
+static UIViewController *ctrl_verify = nil;
 
 @implementation TSTradeRemindController
 
 @synthesize sg_switch;
+@synthesize is_verified;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -28,8 +31,10 @@
 
 - (void) dealloc
 {
-    self.sg_switch = nil;
+    [ctrl_verify release];
+    ctrl_verify = nil;
     
+    [sg_switch release];
     [refresh_view_h release];
     [refresh_view_b release];
     
@@ -99,6 +104,23 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    if (!is_verified)
+    {
+        if (!ctrl_verify)
+        {
+            self.tableView.delegate = nil;
+            self.tableView.dataSource = nil;
+            self.tableView.scrollEnabled = NO;
+            
+            TSVertifyPhoneController *ctrl = [[TSVertifyPhoneController alloc] initWithStyle:UITableViewStyleGrouped];
+            ctrl.title = @"交易提醒";
+            ctrl.delegate = self;
+            ctrl.tableView.frame = self.tableView.frame;
+            [self.tableView addSubview:ctrl.tableView];
+            ctrl_verify = ctrl;
+        }
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -237,6 +259,18 @@
     }
     
     [model fetchNewData];
+}
+
+#pragma mark - TSVertifyPhoneController delegate
+
+- (void) tsVertifyPhoneControllerDidCancel:(TSVertifyPhoneController *)controller
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void) tsVertifyPhoneControllerCheckedOK:(TSVertifyPhoneController *)controller
+{
+    
 }
 
 @end

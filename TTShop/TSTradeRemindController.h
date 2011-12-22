@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TSVertifyPhoneController.h"
 
 @class EGORefreshTableHeaderView;
 @class TSTradeRemindModel;
 
-@interface TSTradeRemindController : UITableViewController
+@interface TSTradeRemindController : UITableViewController<TSVertifyPhoneControllerDelegate>
 {
     UISegmentedControl          *sg_switch;
     
@@ -19,9 +20,12 @@
 	EGORefreshTableHeaderView	*refresh_view_b;
     
     TSTradeRemindModel          *model;
+    
+    BOOL                        is_verified;
 }
 
 @property (nonatomic, retain) UISegmentedControl *sg_switch;
+@property (nonatomic, assign) BOOL is_verified;
 
 - (IBAction) segmentedControlChange:(id)sender;
 

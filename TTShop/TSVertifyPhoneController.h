@@ -13,6 +13,7 @@
     BOOL                is_show_close_btn;
     
     UITextField         *tf_curr_inputbox;
+    UIButton            *mask_btn;
     
     id                  delegate;
 }

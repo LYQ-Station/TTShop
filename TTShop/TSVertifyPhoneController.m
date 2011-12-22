@@ -8,8 +8,6 @@
 
 #import "TSVertifyPhoneController.h"
 
-static UIButton *mask_btn = nil;
-
 @implementation TSVertifyPhoneController
 
 @synthesize is_show_close_btn;
@@ -101,51 +99,71 @@ static UIButton *mask_btn = nil;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    if (0 == section)
+    {
+        return 2;
+    }
+    
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = nil;
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)
+    if (0 == indexPath.section)
     {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil)
+        {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
+        }
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (0 == indexPath.row)
+        {
+            cell.textLabel.text = @"手机号码：";
+            
+            UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(90.0f, 12.0f, 198.0f, 26.0f)];
+            tf.font = [UIFont systemFontOfSize:14.0f];
+            tf.placeholder = @"请输入手机号码";
+            tf.keyboardType = UIKeyboardTypeNumberPad;
+            tf.delegate = self;
+            [cell addSubview:tf];
+            [tf release];
+            
+            tf_curr_inputbox = tf;
+        }
+        else if (1 == indexPath.row)
+        {
+            cell.textLabel.text = @"验证码：";
+            
+            UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(90.0f, 12.0f, 198.0f, 26.0f)];
+            tf.font = [UIFont systemFontOfSize:14.0f];
+            tf.placeholder = @"请输入验证码";
+            tf.keyboardType = UIKeyboardTypeNumberPad;
+            tf.delegate = self;
+            [cell addSubview:tf];
+            [tf release];
+        }
     }
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    if (0 == indexPath.row)
+    else
     {
-        cell.textLabel.text = @"手机号码：";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil)
+        {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        }
         
-        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(90.0f, 12.0f, 198.0f, 26.0f)];
-        tf.font = [UIFont systemFontOfSize:14.0f];
-        tf.placeholder = @"请输入手机号码";
-        tf.keyboardType = UIKeyboardTypeNumberPad;
-        tf.delegate = self;
-        [cell addSubview:tf];
-        [tf release];
-        
-        tf_curr_inputbox = tf;
-    }
-    else if (1 == indexPath.row)
-    {
-        cell.textLabel.text = @"验证码：";
-        
-        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(90.0f, 12.0f, 198.0f, 26.0f)];
-        tf.font = [UIFont systemFontOfSize:14.0f];
-        tf.placeholder = @"请输入验证码";
-        tf.keyboardType = UIKeyboardTypeNumberPad;
-        tf.delegate = self;
-        [cell addSubview:tf];
-        [tf release];
+//        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.text = @"开始验证";
     }
     
     return cell;
