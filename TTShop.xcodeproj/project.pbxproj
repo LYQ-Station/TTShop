@@ -309,8 +309,6 @@
 				620FE111149B43CC007E5194 /* Default.png */,
 				620FE10F149B4348007E5194 /* logo@2x.png */,
 				620FE10D149B4346007E5194 /* logo.png */,
-				6248A2FD14999B8B000B1DA7 /* AddressBookUI.framework */,
-				6248A2FB14999B87000B1DA7 /* AddressBook.framework */,
 				B02B02531487BBF000B5F048 /* TTShop */,
 				B02B024C1487BBF000B5F048 /* Frameworks */,
 				B02B024A1487BBF000B5F048 /* Products */,
@@ -329,6 +327,8 @@
 		B02B024C1487BBF000B5F048 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6248A2FD14999B8B000B1DA7 /* AddressBookUI.framework */,
+				6248A2FB14999B87000B1DA7 /* AddressBook.framework */,
 				B02B02781487BC6200B5F048 /* QuartzCore.framework */,
 				B02B024D1487BBF000B5F048 /* UIKit.framework */,
 				B02B024F1487BBF000B5F048 /* Foundation.framework */,

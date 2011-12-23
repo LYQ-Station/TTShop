@@ -114,6 +114,7 @@ static UITableViewController *ctrl_verify = nil;
         {
             self.tableView.delegate = nil;
             self.tableView.dataSource = nil;
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             self.tableView.scrollEnabled = NO;
             
             TSVertifyPhoneController *ctrl = [[TSVertifyPhoneController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -288,6 +289,7 @@ static UITableViewController *ctrl_verify = nil;
     [ctrl_verify release];
     ctrl_verify = nil;
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.scrollEnabled = YES;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

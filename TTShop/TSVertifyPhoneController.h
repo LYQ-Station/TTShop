@@ -27,7 +27,9 @@
 
 - (void) btnCloseClick:(id)sender;
 
-- (void) btnSubmitClick:(id)sender;
+- (void) getCode:(id)sender;
+
+- (void) onGetCode:(NSNotification *)notify;
 
 - (void) doVerify;
 

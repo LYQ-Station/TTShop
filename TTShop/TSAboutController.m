@@ -89,9 +89,10 @@
     UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:nil
                                                     delegate:self
                                            cancelButtonTitle:@"取消"
-                                      destructiveButtonTitle:nil
-                                           otherButtonTitles:@"用邮件程序向天天付发送邮件", nil];
+                                      destructiveButtonTitle:@"用邮件程序向天天付发送邮件"
+                                           otherButtonTitles:nil, nil];
     
+    as.tag = 101;
     [as showInView:self.view];
 }
 
@@ -100,9 +101,10 @@
     UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:nil
                                                     delegate:self
                                            cancelButtonTitle:@"取消"
-                                      destructiveButtonTitle:nil
-                                           otherButtonTitles:@"拨打天天付客服电话", nil];
+                                      destructiveButtonTitle:@"拨打天天付客服电话"
+                                           otherButtonTitles:nil, nil];
     
+    as.tag = 102;
     [as showInView:self.view];
 }
 
@@ -110,7 +112,16 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
+    if (101 == actionSheet.tag)
+    {
+        NSURL *mail_url = [NSURL URLWithString:@"mailto://dailypay@163.com"];
+        [[UIApplication sharedApplication] openURL:mail_url]; 
+    }
+    else if (102 == actionSheet.tag)
+    {
+        NSURL *phone_url = [NSURL URLWithString:@"tel://4001813800"];
+        [[UIApplication sharedApplication] openURL:phone_url];    
+    }
 }
 
 

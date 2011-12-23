@@ -9,7 +9,7 @@
 #import "TSFeedbackController.h"
 #import "TSConfigs.h"
 #import "STURLLoader.h"
-
+#import "STAlertView.h"
 
 @implementation TSFeedbackController
 
@@ -51,7 +51,7 @@
 {
     [super viewDidLoad];
 
-    UIBarButtonItem *btn_send = [[UIBarButtonItem alloc] initWithTitle:@"发送" style:UIBarButtonItemStyleDone target:self action:@selector(btnSendClick:)];
+    UIBarButtonItem *btn_send = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(btnSendClick:)];
     self.navigationItem.rightBarButtonItem = btn_send;
     [btn_send release];
     
@@ -64,6 +64,7 @@
 {
     [super viewDidUnload];
     
+    self.navigationItem.rightBarButtonItem = nil;
     self.txt_feedback = nil;
 }
 
@@ -125,6 +126,7 @@
         tf.font = [UIFont systemFontOfSize:14.0f];
         tf.placeholder = @"请输入手机号码";
         tf.keyboardType = UIKeyboardTypeNumberPad;
+        tf.delegate = self;
         [cell addSubview:tf];
         [tf release];
         
@@ -135,6 +137,7 @@
         UITextView *tv = [[UITextView alloc] initWithFrame:CGRectMake(17.0f, 5.0f, 285.0f, 90.0f)];
         tv.font = [UIFont systemFontOfSize:14.0f];
         tv.backgroundColor = [UIColor clearColor];
+        tv.delegate = self;
         [cell addSubview:tv];
         [tv release];
     }
@@ -175,11 +178,24 @@
     return 44.0f;
 }
 
+#pragma mark - input field delegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    curr_input_field = textField;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    curr_input_field = textView;
+}
+
 #pragma mark - events
 
 - (void) btnSendClick:(id)sender
 {
-    
+    [curr_input_field resignFirstResponder];
+    [self send];
 }
 
 #pragma mark - send contents
@@ -193,12 +209,49 @@
     
     is_loading = YES;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [STAlertView showModalWithLoadingInView:self.view text:@"正在提交反馈..."];
+    
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    
+    NSString *full_url = [NSString stringWithFormat:@"http://www.baidu.com", BASE_URL, nil];
+    
+    STURLRequest *req = [[STURLRequest alloc] initWithURLString:full_url];
+    STURLLoader *loader = [[STURLLoader alloc] initWithURLRequest:req];
+    [loader addEventListener:STLOADER_COMPLETE target:self action:@selector(onSended:)];
+    
+    [req release];
+    [STURLLoader bindLoader:loader withDelegate:self];
+    
+    [loader load];
 }
 
 - (void) onSended:(NSNotification *)notify
 {
     is_loading = NO;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [STAlertView close];
+    
+    STURLLoader *loader = (STURLLoader *)notify.object;
+    
+    [loader removeEventListener:STLOADER_COMPLETE target:self];
+	[loader release];
+    
+    [STURLLoader releaseBindedLoaderForDelegate:self];
+    
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:nil
+                                                 message:@"谢谢您的回馈意见！"
+                                                delegate:self
+                                       cancelButtonTitle:@"关闭"
+                                       otherButtonTitles:nil, nil];
+    [av show];
+    [av release];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

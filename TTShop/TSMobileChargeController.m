@@ -381,6 +381,13 @@ static NSString *contact_phone = nil;
     
     [STAlertView close];
     
+    STURLLoader *loader = (STURLLoader *)notify.object;
+    
+    [loader removeEventListener:STLOADER_COMPLETE target:self];
+	[loader release];
+    
+    [STURLLoader releaseBindedLoaderForDelegate:self];
+    
     TSMobileChargeConfirmController *ctrl = [[TSMobileChargeConfirmController alloc] initWithStyle:UITableViewStyleGrouped];
     ctrl.phone_info = [NSDictionary dictionaryWithObjectsAndKeys:@"深圳", @"city", @"中国移动", @"vendor", nil];
     

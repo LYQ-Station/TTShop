@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TSFeedbackController : UITableViewController
+@interface TSFeedbackController : UITableViewController <UITextFieldDelegate, UITextViewDelegate, UIAlertViewDelegate>
 {
     UITextView          *txt_feedback;
+    UIView              *curr_input_field;
     
     BOOL                is_loading;
 }
