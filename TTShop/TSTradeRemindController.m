@@ -11,6 +11,7 @@
 #import "TSTradeRemindCell.h"
 #import "TSTradeRemindModel.h"
 #import "TSVertifyPhoneController.h"
+#import "TSTradeDetailsController.h"
 #import "EGORefreshTableHeaderView.h"
 
 static UITableViewController *ctrl_verify = nil;
@@ -56,6 +57,8 @@ static UITableViewController *ctrl_verify = nil;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.clearsSelectionOnViewWillAppear = YES;
 
     UISegmentedControl *sg_ctrl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"交易提醒", @"系统公告", nil]];
 	sg_ctrl.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -163,7 +166,7 @@ static UITableViewController *ctrl_verify = nil;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -176,7 +179,7 @@ static UITableViewController *ctrl_verify = nil;
         cell = [[[TSTradeRemindCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     [cell setContent:nil];
     
     return cell;
@@ -186,14 +189,9 @@ static UITableViewController *ctrl_verify = nil;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    TSTradeDetailsController *ctrl = [[TSTradeDetailsController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:ctrl animated:YES];
+    [ctrl release];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

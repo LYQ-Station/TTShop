@@ -10,7 +10,7 @@
 #import "TSTradeRecordsController.h"
 #import "TSTradeRemindCell.h"
 #import "TSVertifyPhoneController.h"
-
+#import "TSTradeDetailsController.h"
 
 static UITextView *tmp_text_view = nil;
 static NSArray *b_types;
@@ -66,6 +66,8 @@ static NSArray *t_types;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.clearsSelectionOnViewWillAppear = YES;
     
     self.title = @"交易记录";
     self.navigationItem.prompt = @" ";
@@ -177,7 +179,7 @@ static NSArray *t_types;
         cell = [[[TSTradeRemindCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     [cell setContent:nil];
     
     return cell;
@@ -188,14 +190,9 @@ static NSArray *t_types;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    TSTradeDetailsController *ctrl = [[TSTradeDetailsController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:ctrl animated:YES];
+    [ctrl release];
 }
 
 #pragma mark -

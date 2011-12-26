@@ -38,7 +38,6 @@
     [STURLLoader releaseBindedLoaderForDelegate:self];
     
     [mask_btn release];
-    mask_btn = nil;
     
     [super dealloc];
 }

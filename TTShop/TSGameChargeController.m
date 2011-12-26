@@ -37,6 +37,7 @@ static NSString *contact_phone = nil;
     [tab_ctrl_inner release];
     [tb_for_picker release];
     [pv_picker release];
+    [mask_btn release];
     
     [tmp_text_view release];
     
@@ -83,7 +84,7 @@ static NSString *contact_phone = nil;
     UIBarButtonItem *btn_close = [[UIBarButtonItem alloc] initWithTitle:@"关闭键盘"
                                                                   style:UIBarButtonItemStyleBordered
                                                                  target:self
-                                                                 action:@selector(btnCloseKeyBoardClick:)];
+                                                                 action:@selector(btnClosePickerClick:)];
     
     UIBarButtonItem *btn_submit = [[UIBarButtonItem alloc] initWithTitle:@"选择"
                                                                    style:UIBarButtonItemStyleDone
@@ -195,6 +196,7 @@ static NSString *contact_phone = nil;
             tf.font = [UIFont systemFontOfSize:14.0f];
             tf.placeholder = @"请输入手机号码";
             tf.keyboardType = UIKeyboardTypeNumberPad;
+            tf.delegate = self;
             [cell addSubview:tf];
             [tf release];
             
@@ -443,6 +445,29 @@ static NSString *contact_phone = nil;
     }
 }
 
+#pragma mark - phone NO. inputbox delegate
+
+- (void) textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (!mask_btn)
+    {
+        mask_btn = [[UIButton alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        mask_btn.backgroundColor = [UIColor whiteColor];
+        mask_btn.alpha = 0.1f;
+        [mask_btn addTarget:self action:@selector(btnCloseKeyBoardClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    [self.tableView addSubview:mask_btn];
+    
+    curr_inputbox = textField;
+}
+
+- (void) btnCloseKeyBoardClick:(id)sender
+{
+    [curr_inputbox resignFirstResponder];
+    [mask_btn removeFromSuperview];
+}
+
 #pragma mark -
 
 - (void) btnNextStepClick:(id)sender
@@ -476,7 +501,7 @@ static NSString *contact_phone = nil;
 
 #pragma mark - event for toolbar buttons
 
-- (void) btnCloseKeyBoardClick:(id)sender
+- (void) btnClosePickerClick:(id)sender
 {
     [tmp_text_view resignFirstResponder];
     

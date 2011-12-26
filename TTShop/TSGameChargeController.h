@@ -12,11 +12,12 @@
 #import "TSHistoryPhoneController.h"
 #import "TSGameChargeModel.h"
 
-
-@interface TSGameChargeController : UITableViewController <TSHistoryPhoneDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface TSGameChargeController : UITableViewController <TSHistoryPhoneDelegate, UINavigationControllerDelegate, ABPeoplePickerNavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 {
     UITextField                     *tf_phone_no;
     TSHistoryPhoneController        *tab_ctrl_inner;
+    UIButton                        *mask_btn;
+    UIView                          *curr_inputbox;
     
     UIToolbar                       *tb_for_picker;
     UIPickerView                    *pv_picker;
@@ -31,6 +32,8 @@
 - (void) btnContactClick:(id)sender;
 
 - (void) btnNextStepClick:(id)sender;
+
+- (void) btnClosePickerClick:(id)sender;
 
 - (void) btnCloseKeyBoardClick:(id)sender;
 
