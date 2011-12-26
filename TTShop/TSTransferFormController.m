@@ -8,6 +8,7 @@
 
 #import "TSTransferFormController.h"
 #import "TSTransferConfirmContoller.h"
+#import "TSTransferContactNavController.h"
 
 @implementation TSTransferFormController
 
@@ -109,10 +110,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (4 == indexPath.section)
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"last_cell"];
+        if (cell == nil)
+        {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"last_cell"] autorelease];
+        }
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell.textLabel.text = @"立即执行";
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        
+        return cell;
+    }
+    
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
+    if (cell == nil)
+    {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
     }
     
@@ -131,6 +148,12 @@
             tf.placeholder = @"收款方用户名";
             [cell addSubview:tf];
             [tf release];
+            
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn.frame = CGRectMake(0, 0, 54, 54);
+            [btn setImage:[UIImage imageNamed:@"btn_conp"] forState:UIControlStateNormal];
+            [btn addTarget:self action:@selector(btnContactClick:) forControlEvents:UIControlEventTouchUpInside];
+            cell.accessoryView = btn;
         }
         else
         {
@@ -148,6 +171,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
             cell.textLabel.text = @"选择收款方开户银行";
             cell.textLabel.numberOfLines = 2;
+            cell.detailTextLabel.text = @"招商银行";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         else if (1 == indexPath.row)
@@ -256,23 +280,40 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    if (4 == indexPath.section)
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        return;
+    }
 }
 
-#pragma mark -
+#pragma mark - 
+
+#pragma mark - TSTransferContactPickerDelegate
+
+- (void) tsTransferContactPickerDidCancel:(TSTransferContactNavController *)aController
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void) tsTransferContactPickerDidSelect:(TSTransferContactNavController *)aController withPerson:(NSDictionary *)personInfo
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 - (void) btnNextStepClick:(id)sender
 {
     TSTransferConfirmContoller *ctrl = [[TSTransferConfirmContoller alloc] initWithStyle:UITableViewStyleGrouped];
     ctrl.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:ctrl animated:YES];
+    [ctrl release];
+}
+
+- (void) btnContactClick:(id)sender
+{
+    TSTransferContactNavController *ctrl = [[TSTransferContactNavController alloc] initWithNibName:nil bundle:nil];
+    ctrl.delegate = self;
+    [self presentModalViewController:ctrl animated:YES];
     [ctrl release];
 }
 

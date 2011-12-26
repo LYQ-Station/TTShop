@@ -1,15 +1,17 @@
 //
-//  TSTransferConfirmContoller.m
+//  TSTransferContactController.m
 //  TTShop
 //
-//  Created by Steven Li on 11-12-26.
-//  Copyright (c) 2011年 TTF Inc. All rights reserved.
+//  Created by Steven Li on 12/26/11.
+//  Copyright (c) 2011 TTF Inc. All rights reserved.
 //
 
-#import "TSTransferConfirmContoller.h"
+#import "TSTransferContactController.h"
 
 
-@implementation TSTransferConfirmContoller
+@implementation TSTransferContactController
+
+@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -34,18 +36,32 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.title = @"选择常用联系人";
+    self.clearsSelectionOnViewWillAppear = YES;
+    
+    UIBarButtonItem *btn_cancel = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStyleBordered target:self action:@selector(btnCancelClick:)];
+    self.navigationItem.leftBarButtonItem = btn_cancel;
+    [btn_cancel release];
+    
+    UIBarButtonItem *btn_add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
+    self.navigationItem.rightBarButtonItem = btn_add;
+    [btn_add release];
+    
+    UISearchBar *srh_bar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f)];
+    srh_bar.placeholder = @"按联系人名、账号搜索";
+    srh_bar.delegate = self;
+    UISearchDisplayController *ctrl_for_srh = [[UISearchDisplayController alloc] initWithSearchBar:srh_bar contentsController:self];
+    ctrl_for_srh.delegate = self;
+    [self.view addSubview:srh_bar];
+    [srh_bar release];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItem = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -78,17 +94,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (0 == section)
-    {
-        return 8;
-    }
-    
-    return 1;
+    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,24 +107,15 @@
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    if (cell == nil)
+    {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    cell.textLabel.text = @"属性";
-    cell.detailTextLabel.text = @"PT200110910018016";
+    cell.textLabel.text = @"老李";
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
 /*
 // Override to support editing the table view.
@@ -157,6 +159,22 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+}
+
+#pragma mark -
+
+- (void) btnCancelClick:(id)sender
+{
+    if (self.navigationController.delegate &&
+        [self.navigationController.delegate respondsToSelector:@selector(tsTransferContactPickerDidCancel:)])
+    {
+        [self.navigationController.delegate performSelector:@selector(tsTransferContactPickerDidCancel:) withObject:self.navigationController];
+    }
+}
+
+- (void) btnAddClick:(id)sender
+{
+    
 }
 
 @end

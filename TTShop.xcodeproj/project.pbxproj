@@ -65,6 +65,8 @@
 		62A3671A14A80286008A52C8 /* TSTradeDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A3671914A80286008A52C8 /* TSTradeDetailsController.m */; };
 		62A3671F14A869A9008A52C8 /* TSTransferFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A3671E14A869A9008A52C8 /* TSTransferFormController.m */; };
 		62A3672214A87B39008A52C8 /* TSTransferConfirmContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A3672114A87B39008A52C8 /* TSTransferConfirmContoller.m */; };
+		B00E81AA14A8B8DE00EB16C6 /* TSTransferContactController.m in Sources */ = {isa = PBXBuildFile; fileRef = B00E81A914A8B8DE00EB16C6 /* TSTransferContactController.m */; };
+		B00E81AE14A8BC3B00EB16C6 /* TSTransferContactNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = B00E81AD14A8BC3B00EB16C6 /* TSTransferContactNavController.m */; };
 		B02B024E1487BBF000B5F048 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B024D1487BBF000B5F048 /* UIKit.framework */; };
 		B02B02501487BBF000B5F048 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B024F1487BBF000B5F048 /* Foundation.framework */; };
 		B02B02521487BBF000B5F048 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B02511487BBF000B5F048 /* CoreGraphics.framework */; };
@@ -177,6 +179,10 @@
 		62A3671E14A869A9008A52C8 /* TSTransferFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTransferFormController.m; sourceTree = "<group>"; };
 		62A3672014A87B39008A52C8 /* TSTransferConfirmContoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTransferConfirmContoller.h; sourceTree = "<group>"; };
 		62A3672114A87B39008A52C8 /* TSTransferConfirmContoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTransferConfirmContoller.m; sourceTree = "<group>"; };
+		B00E81A814A8B8DE00EB16C6 /* TSTransferContactController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTransferContactController.h; sourceTree = "<group>"; };
+		B00E81A914A8B8DE00EB16C6 /* TSTransferContactController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTransferContactController.m; sourceTree = "<group>"; };
+		B00E81AC14A8BC3B00EB16C6 /* TSTransferContactNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTransferContactNavController.h; sourceTree = "<group>"; };
+		B00E81AD14A8BC3B00EB16C6 /* TSTransferContactNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTransferContactNavController.m; sourceTree = "<group>"; };
 		B02B02491487BBF000B5F048 /* TTShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B02B024D1487BBF000B5F048 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B02B024F1487BBF000B5F048 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -318,6 +324,10 @@
 				62A3671E14A869A9008A52C8 /* TSTransferFormController.m */,
 				62A3672014A87B39008A52C8 /* TSTransferConfirmContoller.h */,
 				62A3672114A87B39008A52C8 /* TSTransferConfirmContoller.m */,
+				B00E81AC14A8BC3B00EB16C6 /* TSTransferContactNavController.h */,
+				B00E81AD14A8BC3B00EB16C6 /* TSTransferContactNavController.m */,
+				B00E81A814A8B8DE00EB16C6 /* TSTransferContactController.h */,
+				B00E81A914A8B8DE00EB16C6 /* TSTransferContactController.m */,
 			);
 			name = Transfer;
 			sourceTree = "<group>";
@@ -725,6 +735,8 @@
 				62A3671A14A80286008A52C8 /* TSTradeDetailsController.m in Sources */,
 				62A3671F14A869A9008A52C8 /* TSTransferFormController.m in Sources */,
 				62A3672214A87B39008A52C8 /* TSTransferConfirmContoller.m in Sources */,
+				B00E81AA14A8B8DE00EB16C6 /* TSTransferContactController.m in Sources */,
+				B00E81AE14A8BC3B00EB16C6 /* TSTransferContactNavController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

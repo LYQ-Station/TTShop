@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TSTransferContactNavController.h"
 
-@interface TSTransferFormController : UITableViewController
+@interface TSTransferFormController : UITableViewController <TSTransferContactPickerDelegate>
 
 - (void) btnNextStepClick:(id)sender;
+
+- (void) btnContactClick:(id)sender;
 
 @end
