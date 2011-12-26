@@ -10,7 +10,7 @@
 #import "TSAppsGridViewController.h"
 #import "TSGameChargeController.h"
 #import "TSMobileChargeController.h"
-
+#import "TSTransferFormController.h"
 
 @implementation TSAppsListViewController
 
@@ -183,16 +183,7 @@
     }
     else if (2 == indexPath.row)
     {
-        UIAlertView *av = [[UIAlertView alloc] initWithTitle:nil
-                                                     message:@"暂时未开通撒！"
-                                                    delegate:nil
-                                           cancelButtonTitle:@"晓得了"
-                                           otherButtonTitles:nil, nil];
-        
-        [av show];
-        [av release];
-        
-        return;
+        ctrl = [[TSTransferFormController alloc] initWithStyle:UITableViewStyleGrouped];
     }
     
     ctrl.hidesBottomBarWhenPushed = YES;

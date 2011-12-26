@@ -12,7 +12,7 @@
 #pragma mark -
 
 //当前版本
-#define VERSION_STR                 @"1.0.0"
+#define VERSION_STR                 @"1.0"
 
 #pragma mark - 接口地址
 

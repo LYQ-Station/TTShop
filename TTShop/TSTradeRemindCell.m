@@ -42,7 +42,7 @@
     lb_value = [[UILabel alloc] initWithFrame:CGRectMake(320.0f-80.0f, 22.0f, 80.0f-10.0f, 20.0f)];
     lb_value.textAlignment = UITextAlignmentRight;
     lb_value.font = [UIFont systemFontOfSize:13.0f];
-    lb_value.textColor = [UIColor darkGrayColor];
+    lb_value.textColor = [UIColor redColor];
     lb_value.text = @"交易成功";
     [self addSubview:lb_value];
     [lb_value release];

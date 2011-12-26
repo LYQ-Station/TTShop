@@ -7,7 +7,10 @@
 //
 
 #import "TSAppDelegate.h"
+#import "TSConfigs.h"
+#import "STURLLoader.h"
 
+static NSInteger check_new_ver_counter = 0;
 
 @implementation TSAppDelegate
 
@@ -26,22 +29,8 @@
 {
     [self.window makeKeyAndVisible];
     
-//    [STAlertView showAtBottom:@"网络的情况还不错，可以继续访问。"];
-        
-//    STURLRequest *req = [[STURLRequest alloc] initWithURLString:@"http://192.168.0.108/txt.txt"];
-//    STURLLoader *loader = [[STURLLoader alloc] initWithURLRequest:req];
-//    [loader addEventListener:STLOADER_COMPLETE target:self action:@selector(show:)];
-//    [loader load];
-//    [req release];
-    
     return YES;
 }
-
-//- (void) show:(NSNotification *)notify
-//{
-//    STURLLoader *loader = (STURLLoader *)notify.object;
-//    NSLog(@"%@", [loader.getJSONData objectForKey:@"success"]);
-//}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -57,6 +46,23 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
+    
+    UIApplication* app = [UIApplication sharedApplication];
+	
+	__block UIBackgroundTaskIdentifier bgTask;
+	bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
+        [app endBackgroundTask:bgTask];
+		bgTask = UIBackgroundTaskInvalid;
+	}];
+	
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		dispatch_async(dispatch_get_main_queue(), ^{
+			
+            
+			[app endBackgroundTask:bgTask];
+			bgTask = UIBackgroundTaskInvalid;
+		});
+	});
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -71,6 +77,14 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    
+    check_new_ver_counter++;
+    
+    if (check_new_ver_counter == 5)
+    {	
+        check_new_ver_counter = 0;
+        [self checkNewVersion];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -95,5 +109,29 @@
 {
 }
 */
+
+#pragma mark -
+
+- (void) checkNewVersion
+{
+    NSLog(@"---did check new version");
+//    NSString *full_url = [NSString stringWithFormat:@"%@%@", BASE_URL, URL_CHECK_NEW_VERSION];
+//	STURLRequest *req = [[STURLRequest alloc] initWithURLString:full_url];
+//	[req setFormValue:@"iPhone" forField:@"merId"];
+//    [req setFormValue:@"123" forField:@"source"];
+//    [req setFormValue:VERSION_STR forField:@"edition"];
+//	[req setHTTPMethod:@"POST"];
+//	
+//	STURLLoader *loader = [[STURLLoader alloc] initWithRequest:req];
+//    [loader addEventListener:STLOADER_COMPLETE target:self action:@selector(onCheckNewVersion:)];
+//	[loader load];
+//	
+//	[req release];
+}
+
+- (void) onCheckNewVersion:(NSNotification *)notify
+{
+    
+}
 
 @end

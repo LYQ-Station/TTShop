@@ -51,3 +51,14 @@ typedef struct _st_bind_connection
 - (id) getJSONData;
 
 @end
+
+//@implementation NSString (md5)
+//
+//- (NSString *) md5
+//{
+//    NSData *data = [self dataUsingEncoding: NSUTF8StringEncoding];
+//    unsigned char *digest = MD5([data bytes], [data length], NULL);
+//    return [NSString stringWithUTF8String:(char *)digest];
+//}
+//
+//@end

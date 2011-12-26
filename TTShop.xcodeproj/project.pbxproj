@@ -63,6 +63,8 @@
 		6248A3231499FAFB000B1DA7 /* app_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6248A31F1499FAFB000B1DA7 /* app_list@2x.png */; };
 		62A3566714A07A9E004190CF /* TSTradeRecordsNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A3566614A07A9E004190CF /* TSTradeRecordsNavController.m */; };
 		62A3671A14A80286008A52C8 /* TSTradeDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A3671914A80286008A52C8 /* TSTradeDetailsController.m */; };
+		62A3671F14A869A9008A52C8 /* TSTransferFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A3671E14A869A9008A52C8 /* TSTransferFormController.m */; };
+		62A3672214A87B39008A52C8 /* TSTransferConfirmContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A3672114A87B39008A52C8 /* TSTransferConfirmContoller.m */; };
 		B02B024E1487BBF000B5F048 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B024D1487BBF000B5F048 /* UIKit.framework */; };
 		B02B02501487BBF000B5F048 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B024F1487BBF000B5F048 /* Foundation.framework */; };
 		B02B02521487BBF000B5F048 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B02511487BBF000B5F048 /* CoreGraphics.framework */; };
@@ -171,6 +173,10 @@
 		62A3566614A07A9E004190CF /* TSTradeRecordsNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTradeRecordsNavController.m; sourceTree = "<group>"; };
 		62A3671814A80286008A52C8 /* TSTradeDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTradeDetailsController.h; sourceTree = "<group>"; };
 		62A3671914A80286008A52C8 /* TSTradeDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTradeDetailsController.m; sourceTree = "<group>"; };
+		62A3671D14A869A9008A52C8 /* TSTransferFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTransferFormController.h; sourceTree = "<group>"; };
+		62A3671E14A869A9008A52C8 /* TSTransferFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTransferFormController.m; sourceTree = "<group>"; };
+		62A3672014A87B39008A52C8 /* TSTransferConfirmContoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTransferConfirmContoller.h; sourceTree = "<group>"; };
+		62A3672114A87B39008A52C8 /* TSTransferConfirmContoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTransferConfirmContoller.m; sourceTree = "<group>"; };
 		B02B02491487BBF000B5F048 /* TTShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B02B024D1487BBF000B5F048 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B02B024F1487BBF000B5F048 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -303,6 +309,17 @@
 				6248A3131499F723000B1DA7 /* more@2x.png */,
 			);
 			name = tabbar_icon;
+			sourceTree = "<group>";
+		};
+		62A3671C14A868F9008A52C8 /* Transfer */ = {
+			isa = PBXGroup;
+			children = (
+				62A3671D14A869A9008A52C8 /* TSTransferFormController.h */,
+				62A3671E14A869A9008A52C8 /* TSTransferFormController.m */,
+				62A3672014A87B39008A52C8 /* TSTransferConfirmContoller.h */,
+				62A3672114A87B39008A52C8 /* TSTransferConfirmContoller.m */,
+			);
+			name = Transfer;
 			sourceTree = "<group>";
 		};
 		B02B023E1487BBF000B5F048 = {
@@ -489,6 +506,7 @@
 				6248A3061499DC8A000B1DA7 /* TSViewOrderController.m */,
 				6248A3081499DF41000B1DA7 /* TSOrderPropertyController.h */,
 				6248A3091499DF41000B1DA7 /* TSOrderPropertyController.m */,
+				62A3671C14A868F9008A52C8 /* Transfer */,
 				B0D07E7B148BBCDA0096CDFC /* GameCard */,
 				B0D07E7A148BBCB60096CDFC /* MobileCharge */,
 			);
@@ -705,6 +723,8 @@
 				B0590D16149C783800226F26 /* TSGameChargeModel.m in Sources */,
 				62A3566714A07A9E004190CF /* TSTradeRecordsNavController.m in Sources */,
 				62A3671A14A80286008A52C8 /* TSTradeDetailsController.m in Sources */,
+				62A3671F14A869A9008A52C8 /* TSTransferFormController.m in Sources */,
+				62A3672214A87B39008A52C8 /* TSTransferConfirmContoller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
