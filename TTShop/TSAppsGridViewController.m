@@ -10,6 +10,7 @@
 #import "TSAppsGridViewController.h"
 #import "TSGameChargeController.h"
 #import "TSMobileChargeController.h"
+#import "TSTransferFormController.h"
 
 @implementation TSAppsGridViewController
 
@@ -117,23 +118,23 @@
 	[self addButton:btn];
 	[btn release];
     
-    btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	btn.titleLabel.text = @"我的测试";
-	[btn setImage:[UIImage imageNamed:@"app_firem"] forState:UIControlStateNormal];
-	[self addButton:btn];
-	[btn release];
-    
-    btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	btn.titleLabel.text = @"我的测试";
-	[btn setImage:[UIImage imageNamed:@"app_waterm"] forState:UIControlStateNormal];
-	[self addButton:btn];
-	[btn release];
-    
-    btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	btn.titleLabel.text = @"我的测试";
-	[btn setImage:[UIImage imageNamed:@"app_elem"] forState:UIControlStateNormal];
-	[self addButton:btn];
-	[btn release];
+//    btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//	btn.titleLabel.text = @"我的测试";
+//	[btn setImage:[UIImage imageNamed:@"app_firem"] forState:UIControlStateNormal];
+//	[self addButton:btn];
+//	[btn release];
+//    
+//    btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//	btn.titleLabel.text = @"我的测试";
+//	[btn setImage:[UIImage imageNamed:@"app_waterm"] forState:UIControlStateNormal];
+//	[self addButton:btn];
+//	[btn release];
+//    
+//    btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//	btn.titleLabel.text = @"我的测试";
+//	[btn setImage:[UIImage imageNamed:@"app_elem"] forState:UIControlStateNormal];
+//	[self addButton:btn];
+//	[btn release];
 }
 
 - (void)viewDidUnload
@@ -247,14 +248,10 @@
 
 - (void) btnBankServiceClick:(id)sender
 {
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:nil
-                                                 message:@"暂时未开通撒！"
-                                                delegate:nil
-                                       cancelButtonTitle:@"晓得了"
-                                       otherButtonTitles:nil, nil];
-    
-    [av show];
-    [av release];
+    TSTransferFormController *ctrl = [[TSTransferFormController alloc] initWithStyle:UITableViewStyleGrouped];
+    ctrl.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:ctrl animated:YES];
+    [ctrl release];
 }
 
 @end

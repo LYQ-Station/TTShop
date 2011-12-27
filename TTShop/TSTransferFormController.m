@@ -81,7 +81,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -99,9 +99,11 @@
             break;
             
         case 2:
-        case 3:
-        case 4:
             r = 1;
+            break;
+            
+        case 3:
+            r = 2;
             break;
     }
     
@@ -110,21 +112,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (4 == indexPath.section)
-    {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"last_cell"];
-        if (cell == nil)
-        {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"last_cell"] autorelease];
-        }
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        cell.textLabel.text = @"立即执行";
-        cell.textLabel.textAlignment = UITextAlignmentCenter;
-        
-        return cell;
-    }
-    
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -132,6 +119,8 @@
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
     }
+    
+    [[cell viewWithTag:101] removeFromSuperview];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -146,6 +135,7 @@
             tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
             tf.font = [UIFont systemFontOfSize:14.0f];
             tf.placeholder = @"收款方用户名";
+            tf.tag = 101;
             [cell addSubview:tf];
             [tf release];
             
@@ -160,6 +150,7 @@
             cell.textLabel.text = @"添加为常用联系人";
             cell.textLabel.numberOfLines = 2;
             UISwitch *btn_switch = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 70, 27)];
+            btn_switch.tag = 101;
             cell.accessoryView = btn_switch;
             [btn_switch release];
         }
@@ -182,6 +173,7 @@
             tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
             tf.font = [UIFont systemFontOfSize:14.0f];
             tf.placeholder = @"收款方帐号";
+            tf.tag = 101;
             [cell addSubview:tf];
             [tf release];
         }
@@ -194,6 +186,7 @@
             tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
             tf.font = [UIFont systemFontOfSize:14.0f];
             tf.placeholder = @"再输入一次收款帐号";
+            tf.tag = 101;
             [cell addSubview:tf];
             [tf release];
         }
@@ -205,6 +198,7 @@
             tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
             tf.font = [UIFont systemFontOfSize:14.0f];
             tf.placeholder = @"每比金额最多5000元";
+            tf.tag = 101;
             [cell addSubview:tf];
             [tf release];
         }
@@ -218,23 +212,62 @@
         tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         tf.font = [UIFont systemFontOfSize:14.0f];
         tf.placeholder = @"您的手机号码";
+        tf.tag = 101;
         [cell addSubview:tf];
         [tf release];
     }
     else if (3 == indexPath.section)
     {
-        cell.textLabel.text = @"收款方手机号";
-        cell.textLabel.numberOfLines = 2;
-        
-        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(88.0f, 10.0f, 183.0f, 26.0f)];
-        tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        tf.font = [UIFont systemFontOfSize:14.0f];
-        tf.placeholder = @"收款方手机号";
-        [cell addSubview:tf];
-        [tf release];
+        if (0 == indexPath.row)
+        {
+            cell.textLabel.text = @"收款方手机号";
+            cell.textLabel.numberOfLines = 2;
+            
+            UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(88.0f, 10.0f, 183.0f, 26.0f)];
+            tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+            tf.font = [UIFont systemFontOfSize:14.0f];
+            tf.placeholder = @"收款方手机号";
+            tf.tag = 101;
+            [cell addSubview:tf];
+            [tf release];
+            
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn.frame = CGRectMake(0, 0, 54, 54);
+            [btn setImage:[UIImage imageNamed:@"btn_conp"] forState:UIControlStateNormal];
+            [btn addTarget:self action:@selector(btnContactClick:) forControlEvents:UIControlEventTouchUpInside];
+            cell.accessoryView = btn;
+        }
+        else if (1 == indexPath.row)
+        {
+            cell.textLabel.text = @"免费短信通知对方";
+            UISwitch *btn_switch = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 70, 27)];
+            btn_switch.tag = 101;
+            cell.accessoryView = btn_switch;
+            [btn_switch release];
+        }
     }
     
     return cell;
+}
+
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (0 == section)
+    {
+        return @"填写转帐信息";
+    }
+    
+    return nil;
+}
+
+- (NSString *) tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    if (3 == section)
+    {
+        return @"1、1个工作日到帐\n语音支付：\n中国银行、中国农业银行\n2、2-3个工作日到帐";
+    }
+    
+    return nil;
 }
 
 /*
@@ -280,11 +313,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (4 == indexPath.section)
-    {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        return;
-    }
 }
 
 #pragma mark - 

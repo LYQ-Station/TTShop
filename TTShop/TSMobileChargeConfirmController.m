@@ -191,7 +191,7 @@ static NSArray *types = nil;
         }
         else
         {
-            cell.textLabel.text = @"快速充值";
+            cell.textLabel.text = @"10分钟";
         }
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -266,6 +266,17 @@ static NSArray *types = nil;
 
 - (void) btnSubmitClick:(id)sender
 {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]];
+    
+    if (0 == pv_picker.tag)
+    {
+        cell.textLabel.text = [values objectAtIndex:[pv_picker selectedRowInComponent:0]];
+    }
+    else
+    {
+        cell.textLabel.text = [types objectAtIndex:[pv_picker selectedRowInComponent:0]];
+    }
+    
     [self btnCloseKeyBoardClick:nil];
 }
 
@@ -303,10 +314,24 @@ static NSArray *types = nil;
     
     if (!types)
     {
-        types = [[NSArray alloc] initWithObjects:@"快速充值", @"普通充值", nil];
+        types = [[NSArray alloc] initWithObjects:@"10分钟", @"30分钟", nil];
     }
     
     return [types objectAtIndex:row];
 }
+
+//- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+//{
+//    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]];
+//    
+//    if (0 == pickerView.tag)
+//    {
+//        cell.textLabel.text = [values objectAtIndex:row];
+//    }
+//    else
+//    {
+//        cell.textLabel.text = [types objectAtIndex:row];
+//    }
+//}
 
 @end
