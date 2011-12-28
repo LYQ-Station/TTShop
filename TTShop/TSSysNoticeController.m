@@ -7,8 +7,8 @@
 //
 
 #import "TSSysNoticeController.h"
+#import "TSSysNoticeModel.h"
 #import "EGORefreshTableHeaderView.h"
-
 
 @implementation TSSysNoticeController
 
@@ -17,10 +17,12 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
+    
     if (self)
     {
-        // Custom initialization
+        model = [[TSSysNoticeModel alloc] initWithDelegate:self];
     }
+    
     return self;
 }
 
@@ -30,6 +32,8 @@
     
     [refresh_view_h release];
     [refresh_view_b release];
+    
+    [model release];
     
     [super dealloc];
 }
@@ -76,6 +80,8 @@
 	refresh_view_b.state = EGOOPullRefreshNormalUP;
 	[self.tableView addSubview:refresh_view_b];
 	refresh_view_b.hidden = YES;
+    
+    [self loadData];
 }
 
 - (void)viewDidUnload
@@ -126,11 +132,34 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    if (0 == model.buffer.count)
+    {
+        return 1;
+    }
+    
+    return model.buffer.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *empty_cell_id = @"empty_cell";
+    
+    if (0 == model.buffer.count)
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:empty_cell_id];
+        if (cell == nil)
+        {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:empty_cell_id] autorelease];
+        }
+        
+        cell.textLabel.text = @"暂无系统公告。";
+        cell.textLabel.font = [UIFont systemFontOfSize:15.0f];
+        cell.textLabel.textColor = [UIColor lightGrayColor];
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        
+        return cell;
+    }
+    
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -141,7 +170,6 @@
     
     cell.textLabel.text = @"神州行充值卡";
     cell.detailTextLabel.text = @"2011-12-07 18:11:22";
-    
     
     return cell;
 }
@@ -167,6 +195,8 @@
 		CGRect bottom_rect = CGRectMake(0.0f, tableView.contentSize.height, 320.0f, 60.0f);
 		refresh_view_b.frame = bottom_rect;
 		refresh_view_b.hidden = NO;
+        
+        last_cell_row_num = indexPath.row;
 	}
 }
 
@@ -205,18 +235,20 @@
 		[refresh_view_h setState:EGOOPullRefreshLoading];
 		self.tableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
 		
+        [model loadNewData];
 	}
 	else if (scrollView.contentOffset.y + scrollView.bounds.size.height - scrollView.contentSize.height > 65.0f)
 	{
 		[refresh_view_b setState:EGOOPullRefreshLoading];
 		self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 60.0f, 0.0f);
 		
+        [model loadOldData];
 	}
 }
 
 #pragma mark -
 
-- (IBAction) segmentedControlChange:(id)sender
+- (void) segmentedControlChange:(id)sender
 {
     UISegmentedControl *sg_ctrl = (UISegmentedControl *)sender;
     
@@ -226,6 +258,43 @@
     }
     
     [self.navigationController popViewControllerAnimated:NO];
+}
+
+- (void) loadData
+{
+	[refresh_view_h setState:EGOOPullRefreshLoading];
+	self.tableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
+	
+	[model loadNewData];
+}
+
+#pragma mark - model delegate
+
+- (void) onModelLoadNewData:(id)aModel
+{
+    NSLog(@"---------- on controller update new");
+    
+    [refresh_view_h setState:EGOOPullRefreshNormal];
+    
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:.2];
+	self.tableView.contentInset = UIEdgeInsetsZero;
+	[UIView commitAnimations];
+    
+    [self.tableView reloadData];
+}
+
+- (void) onModelLoadOldData:(id)aModel
+{
+    NSLog(@"---------- on controller update old");
+    
+    [refresh_view_b setState:EGOOPullRefreshNormalUP];
+    
+    self.tableView.contentInset = UIEdgeInsetsZero;
+    
+    [self.tableView reloadData];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:last_cell_row_num inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    [self.tableView reloadData];
 }
 
 @end

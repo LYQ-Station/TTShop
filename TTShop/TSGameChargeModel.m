@@ -17,7 +17,9 @@
 @synthesize buffer_values;
 @synthesize delegate;
 
-- (TSGameChargeModel *) initWithDelegate:(id)aDelegate
+#pragma mark - init
+
+- (id) initWithDelegate:(id)aDelegate
 {
     self = [super init];
     
@@ -42,6 +44,8 @@
     
     [super dealloc];
 }
+
+#pragma mark - network
 
 - (void) loadData
 {

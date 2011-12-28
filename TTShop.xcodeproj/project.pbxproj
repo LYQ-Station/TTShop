@@ -65,6 +65,7 @@
 		62A3671A14A80286008A52C8 /* TSTradeDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A3671914A80286008A52C8 /* TSTradeDetailsController.m */; };
 		62A3671F14A869A9008A52C8 /* TSTransferFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A3671E14A869A9008A52C8 /* TSTransferFormController.m */; };
 		62A3672214A87B39008A52C8 /* TSTransferConfirmContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A3672114A87B39008A52C8 /* TSTransferConfirmContoller.m */; };
+		62BDAF9714AAF30800457A97 /* TSSysNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BDAF9614AAF30800457A97 /* TSSysNoticeModel.m */; };
 		B00E81AA14A8B8DE00EB16C6 /* TSTransferContactController.m in Sources */ = {isa = PBXBuildFile; fileRef = B00E81A914A8B8DE00EB16C6 /* TSTransferContactController.m */; };
 		B00E81AE14A8BC3B00EB16C6 /* TSTransferContactNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = B00E81AD14A8BC3B00EB16C6 /* TSTransferContactNavController.m */; };
 		B02B024E1487BBF000B5F048 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02B024D1487BBF000B5F048 /* UIKit.framework */; };
@@ -179,6 +180,8 @@
 		62A3671E14A869A9008A52C8 /* TSTransferFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTransferFormController.m; sourceTree = "<group>"; };
 		62A3672014A87B39008A52C8 /* TSTransferConfirmContoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTransferConfirmContoller.h; sourceTree = "<group>"; };
 		62A3672114A87B39008A52C8 /* TSTransferConfirmContoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTransferConfirmContoller.m; sourceTree = "<group>"; };
+		62BDAF9514AAF30800457A97 /* TSSysNoticeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSSysNoticeModel.h; sourceTree = "<group>"; };
+		62BDAF9614AAF30800457A97 /* TSSysNoticeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSSysNoticeModel.m; sourceTree = "<group>"; };
 		B00E81A814A8B8DE00EB16C6 /* TSTransferContactController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTransferContactController.h; sourceTree = "<group>"; };
 		B00E81A914A8B8DE00EB16C6 /* TSTransferContactController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTransferContactController.m; sourceTree = "<group>"; };
 		B00E81AC14A8BC3B00EB16C6 /* TSTransferContactNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTransferContactNavController.h; sourceTree = "<group>"; };
@@ -558,12 +561,14 @@
 				B0F408F51489336C00B62B43 /* TSTradeRemindController.m */,
 				B0D54834148E6540000C9587 /* TSTradeRemindModel.h */,
 				B0D54835148E6540000C9587 /* TSTradeRemindModel.m */,
+				B06BB0F51490FC0C007B388F /* TSTradeRemindCell.h */,
+				B06BB0F61490FC0C007B388F /* TSTradeRemindCell.m */,
 				62A3671814A80286008A52C8 /* TSTradeDetailsController.h */,
 				62A3671914A80286008A52C8 /* TSTradeDetailsController.m */,
 				B0F408F11489322A00B62B43 /* TSSysNoticeController.h */,
 				B0F408F21489322A00B62B43 /* TSSysNoticeController.m */,
-				B06BB0F51490FC0C007B388F /* TSTradeRemindCell.h */,
-				B06BB0F61490FC0C007B388F /* TSTradeRemindCell.m */,
+				62BDAF9514AAF30800457A97 /* TSSysNoticeModel.h */,
+				62BDAF9614AAF30800457A97 /* TSSysNoticeModel.m */,
 			);
 			name = Notice;
 			sourceTree = "<group>";
@@ -737,6 +742,7 @@
 				62A3672214A87B39008A52C8 /* TSTransferConfirmContoller.m in Sources */,
 				B00E81AA14A8B8DE00EB16C6 /* TSTransferContactController.m in Sources */,
 				B00E81AE14A8BC3B00EB16C6 /* TSTransferContactNavController.m in Sources */,
+				62BDAF9714AAF30800457A97 /* TSSysNoticeModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

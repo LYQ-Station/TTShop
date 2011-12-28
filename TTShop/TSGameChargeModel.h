@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface TSGameChargeModel : NSObject
 {
     BOOL					is_loading;
@@ -23,7 +22,7 @@
 @property (nonatomic, readonly) NSArray *buffer_values;
 @property (nonatomic, assign) id delegate;
 
-- (TSGameChargeModel *) initWithDelegate:(id)aDelegate;
+- (id) initWithDelegate:(id)aDelegate;
 
 - (void) loadData;
 

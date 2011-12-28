@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-
 @class EGORefreshTableHeaderView;
+
+@class TSSysNoticeModel;
 
 @interface TSSysNoticeController : UITableViewController
 {
@@ -17,10 +18,18 @@
     
     EGORefreshTableHeaderView	*refresh_view_h;
 	EGORefreshTableHeaderView	*refresh_view_b;
+    
+    NSInteger                   last_cell_row_num;
+    
+    TSSysNoticeModel            *model;
 }
 
 @property (nonatomic, retain) UISegmentedControl *sg_switch;
 
-- (IBAction) segmentedControlChange:(id)sender;
+- (void) segmentedControlChange:(id)sender;
+
+- (void) loadData;
+
+- (void) onModelLoadNewData:(id)aModel;
 
 @end

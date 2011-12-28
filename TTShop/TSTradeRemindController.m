@@ -111,6 +111,7 @@ static UITableViewController *ctrl_verify = nil;
 {
     [super viewDidAppear:animated];
     
+    is_verified = YES;
     if (!is_verified)
     {
         if (!ctrl_verify)
